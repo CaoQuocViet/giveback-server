@@ -4,7 +4,7 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"dev": "vite",
+		"dev": "nodemon ./src/server.js",
 		"build": "vite build",
 		"preview": "vite preview",
 		"test": "echo \"Error: no test specified\" && exit 1",
@@ -12,6 +12,8 @@
 		"server": "nodemon ./src/server.js"
 	},
 	"devDependencies": {
+		"nodemon": "^3.0.2",
+		"sequelize-cli": "^6.6.2",
 		"vite": "^6.0.1"
 	},
 	"dependencies": {
@@ -22,6 +24,8 @@
 		"express": "^4.21.1",
 		"jsonwebtoken": "^9.0.2",
 		"pg": "^8.13.1",
+		"pg-hstore": "^2.3.4",
+		"sequelize": "^6.37.5",
 		"uuid": "^11.0.3"
 	}
 }
