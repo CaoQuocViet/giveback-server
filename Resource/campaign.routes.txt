@@ -1,0 +1,43 @@
+GET /api/campaigns
+- Lấy danh sách chiến dịch
+- Query: {status, province, search, page, limit}
+- Response: {campaigns: [], total, page, limit}
+
+GET /api/campaigns/:id
+- Chi tiết chiến dịch
+- Response: {campaign, charity, donations, distributions, comments}
+
+POST /api/campaigns 
+- Tạo chiến dịch mới
+- Role: CHARITY
+- Body: {title, description, detailGoal, targetAmount, startDate, endDate, location}
+- Response: {campaign}
+
+PUT /api/campaigns/:id
+- Cập nhật chiến dịch
+- Role: CHARITY (owner)
+- Body: {title, description, detailGoal,...} 
+- Response: {campaign}
+
+DELETE /api/campaigns/:id
+- Xóa chiến dịch
+- Role: CHARITY (owner)
+- Chỉ xóa được khi status=STARTING
+- Response: {message: "Deleted"}
+
+PUT /api/campaigns/:id/status
+- Cập nhật trạng thái chiến dịch
+- Role: CHARITY (owner)
+- Body: {status: STARTING|ONGOING|CLOSED|COMPLETED}
+- Response: {campaign}
+
+GET /api/campaigns/statistics
+- Lấy thống kê chiến dịch
+- Query: {campaignId}
+- Response: {totalDonations, totalDistributed, remainingAmount}
+
+PUT /api/campaigns/:id/verify
+- Admin xác minh chiến dịch
+- Role: ADMIN
+- Body: {status: VERIFIED/REJECTED, note}
+- Response: {campaign}

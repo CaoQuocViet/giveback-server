@@ -1,0 +1,31 @@
+POST /api/distributions
+- Tạo phân phối mới
+- Role: CHARITY
+- Body: {campaignId, title, description, amount, beneficiaryCount, reliefDate, location}
+- Response: {distribution}
+
+GET /api/distributions/:id  
+- Chi tiết phân phối
+- Response: {distribution}
+
+GET /api/distributions/campaign/:id
+- Danh sách phân phối theo chiến dịch
+- Query: {status, page, limit}
+- Response: {distributions: [], total, page, limit}
+
+PUT /api/distributions/:id/proof
+- Upload bằng chứng phân phối
+- Role: CHARITY
+- Body: {proofImages: [], handoverDocs: []}
+- Response: {distribution}
+
+POST /api/distributions/:id/beneficiaries
+- Thêm danh sách người nhận
+- Role: CHARITY
+- Body: {beneficiaries: [{name, phone, address, amount}]}
+- Response: {distribution}
+
+GET /api/distributions/export
+- Xuất báo cáo phân phối
+- Query: {campaignId, format}
+- Response: File PDF/Excel

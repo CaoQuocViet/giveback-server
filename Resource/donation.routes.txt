@@ -1,0 +1,32 @@
+POST /api/donations
+- Tạo đóng góp mới 
+- Role: DONOR
+- Body: {campaignId, amount, message, paymentMethod}
+- Response: {donation, paymentUrl}
+
+GET /api/donations/:id
+- Chi tiết đóng góp
+- Role: DONOR (owner)
+- Response: {donation}
+
+PUT /api/donations/:id/status
+- Cập nhật trạng thái đóng góp
+- Role: ADMIN
+- Body: {status: PENDING|COMPLETED|FAILED}
+- Response: {donation}
+
+GET /api/donations/me
+- Lấy lịch sử đóng góp của user
+- Role: DONOR
+- Query: {status, page, limit}
+- Response: {donations: [], total, page, limit}
+
+GET /api/donations/statistics
+- Lấy thống kê đóng góp
+- Query: {campaignId, startDate, endDate}
+- Response: {totalAmount, donorCount, recentDonations}
+
+POST /api/donations/verify-payment
+- Xác nhận thanh toán từ payment gateway
+- Body: {paymentId, status, amount}
+- Response: {donation}

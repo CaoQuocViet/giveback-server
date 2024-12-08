@@ -1,0 +1,20 @@
+POST /api/comments
+- Tạo bình luận mới
+- Body: {campaignId, content, rating}
+- Response: {comment}
+
+GET /api/comments/campaign/:id
+- Lấy bình luận theo chiến dịch
+- Query: {page, limit}
+- Response: {comments: [], total, page, limit}
+
+PUT /api/comments/:id
+- Cập nhật bình luận
+- Role: Owner
+- Body: {content, rating}
+- Response: {comment}
+
+DELETE /api/comments/:id
+- Xóa bình luận
+- Role: Owner/ADMIN
+- Response: {message: "Deleted"}

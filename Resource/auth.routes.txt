@@ -1,0 +1,36 @@
+POST /api/auth/register
+- Đăng ký tài khoản mới
+- Body: {email, phone, password, fullName, role, province, district, ward, address}
+- Role CHARITY cần thêm: {title, description, licenseNumber, licenseDate}
+- Response: {user, token}
+
+POST /api/auth/login  
+- Đăng nhập
+- Body: {email/phone, password}
+- Response: {user, token}
+
+POST /api/auth/logout
+- Đăng xuất
+- Header: Authorization Bearer token
+- Response: {message: "Logged out"}
+
+GET /api/auth/me
+- Lấy thông tin user hiện tại
+- Header: Authorization Bearer token 
+- Response: {user}
+
+PUT /api/auth/profile
+- Cập nhật thông tin cá nhân
+- Header: Authorization Bearer token
+- Body: {fullName, phone, address,...}
+- Response: {user}
+
+POST /api/auth/verify-otp
+- Xác thực OTP khi đăng ký
+- Body: {phone, otp}
+- Response: {success: boolean}
+
+POST /api/auth/resend-otp 
+- Gửi lại OTP
+- Body: {phone}
+- Response: {success: boolean}
