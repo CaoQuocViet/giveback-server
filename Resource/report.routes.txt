@@ -1,9 +1,0 @@
-GET /api/reports
-- Lấy danh sách báo cáo
-- Query: {type, startDate, endDate}
-- Response: {reports: [], total}
-
-POST /api/reports/generate
-- Tạo báo cáo mới
-- Body: {type, referenceId, format}
-- Response: {report, fileUrl}
