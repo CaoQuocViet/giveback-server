@@ -1,1 +1,0 @@
-Lưu các iamge vào đây, đường dẫn được cập nhật lên DB
