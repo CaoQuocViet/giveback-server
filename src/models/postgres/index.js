@@ -52,7 +52,7 @@ Object.keys(models).forEach(modelName => {
   }
 });
 
-module.exports = {
-  sequelize,
-  ...models
-};
+models.sequelize = sequelize;
+models.Sequelize = Sequelize;
+
+module.exports = models;
