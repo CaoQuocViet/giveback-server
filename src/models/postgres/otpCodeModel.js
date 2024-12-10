@@ -45,14 +45,14 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       defaultValue: 0,
       field: 'attempt_count'
-    },
+    }
   }, {
     sequelize,
     modelName: 'OTPCode',
     tableName: 'OTPCodes',
-    underscored: true,
     timestamps: true,
-    updatedAt: false // OTP không cần updatedAt
+    createdAt: 'created_at',
+    updatedAt: false
   });
 
   return OTPCode;

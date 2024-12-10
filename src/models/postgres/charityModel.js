@@ -31,14 +31,9 @@ module.exports = (sequelize) => {
     },
     title: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true
-      }
+      allowNull: false
     },
-    description: {
-      type: DataTypes.TEXT
-    },
+    description: DataTypes.TEXT,
     licenseDescription: {
       type: DataTypes.TEXT,
       field: 'license_description'
@@ -46,10 +41,7 @@ module.exports = (sequelize) => {
     licenseImageUrl: {
       type: DataTypes.STRING,
       allowNull: false,
-      field: 'license_image_url',
-      validate: {
-        isUrl: true
-      }
+      field: 'license_image_url'
     },
     licenseNumber: {
       type: DataTypes.STRING,
@@ -64,7 +56,7 @@ module.exports = (sequelize) => {
       field: 'license_issuer'
     },
     verificationStatus: {
-      type: DataTypes.ENUM(...Object.values(VerificationStatus)),
+      type: '"VerificationStatus"',
       allowNull: false,
       defaultValue: 'PENDING',
       field: 'verification_status'
@@ -73,12 +65,7 @@ module.exports = (sequelize) => {
       type: DataTypes.DATE,
       field: 'founding_date'
     },
-    website: {
-      type: DataTypes.STRING,
-      validate: {
-        isUrl: true
-      }
-    },
+    website: DataTypes.STRING,
     socialLinks: {
       type: DataTypes.JSONB,
       field: 'social_links'
@@ -106,11 +93,7 @@ module.exports = (sequelize) => {
     },
     rating: {
       type: DataTypes.DECIMAL,
-      defaultValue: 0,
-      validate: {
-        min: 0,
-        max: 5
-      }
+      defaultValue: 0
     },
     campaignCount: {
       type: DataTypes.INTEGER,
@@ -138,8 +121,8 @@ module.exports = (sequelize) => {
     sequelize,
     modelName: 'Charity',
     tableName: 'Charities',
-    underscored: true,
-    timestamps: true
+    timestamps: true,
+    underscored: true
   });
 
   return Charity;

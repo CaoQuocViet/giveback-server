@@ -61,14 +61,9 @@ module.exports = (sequelize) => {
     },
     amount: {
       type: DataTypes.DECIMAL,
-      allowNull: false,
-      validate: {
-        min: 0
-      }
+      allowNull: false
     },
-    note: {
-      type: DataTypes.TEXT
-    },
+    note: DataTypes.TEXT,
     invoiceCode: {
       type: DataTypes.STRING,
       unique: true,
@@ -86,7 +81,7 @@ module.exports = (sequelize) => {
       field: 'is_anonymous'
     },
     status: {
-      type: DataTypes.ENUM(...Object.values(PaymentStatus)),
+      type: '"PaymentStatus"',
       allowNull: false,
       defaultValue: 'PENDING'
     },
@@ -99,8 +94,8 @@ module.exports = (sequelize) => {
     sequelize,
     modelName: 'Donation',
     tableName: 'Donations',
-    underscored: true,
-    timestamps: true
+    timestamps: true,
+    underscored: true
   });
 
   return Donation;

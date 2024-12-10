@@ -18,6 +18,18 @@ module.exports = {
         allowNull: false,
         unique: true,
         field: 'transaction_code'
+      },
+      createdAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        field: 'created_at',
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        field: 'updated_at',
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
     });
     

@@ -1,13 +1,13 @@
 const Role = {
   ADMIN: 'ADMIN',
-  DONOR: 'DONOR', 
+  DONOR: 'DONOR',
   CHARITY: 'CHARITY',
   BENEFICIARY: 'BENEFICIARY'
 };
 
 const CampaignStatus = {
   STARTING: 'STARTING',
-  ONGOING: 'ONGOING', 
+  ONGOING: 'ONGOING',
   CLOSED: 'CLOSED',
   COMPLETED: 'COMPLETED'
 };
@@ -27,6 +27,6 @@ const PaymentStatus = {
 module.exports = {
   Role,
   CampaignStatus,
-  VerificationStatus, 
+  VerificationStatus,
   PaymentStatus
-}; 
+};

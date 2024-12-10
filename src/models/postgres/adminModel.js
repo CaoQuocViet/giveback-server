@@ -32,7 +32,6 @@ module.exports = (sequelize) => {
     sequelize,
     modelName: 'Admin',
     tableName: 'Admins',
-    underscored: true,
     timestamps: false
   });
 

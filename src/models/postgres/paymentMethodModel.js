@@ -33,7 +33,6 @@ module.exports = (sequelize) => {
     sequelize,
     modelName: 'PaymentMethod',
     tableName: 'PaymentMethods',
-    underscored: true,
     timestamps: false
   });
 

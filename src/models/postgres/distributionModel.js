@@ -36,52 +36,30 @@ module.exports = (sequelize) => {
     },
     title: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true
-      }
+      allowNull: false
     },
     budget: {
       type: DataTypes.DECIMAL,
-      allowNull: false,
-      validate: {
-        min: 0
-      }
+      allowNull: false
     },
     distributionDate: {
       type: DataTypes.DATE,
       allowNull: false,
       field: 'distribution_date'
     },
-    province: {
-      type: DataTypes.STRING
-    },
-    district: {
-      type: DataTypes.STRING
-    },
-    ward: {
-      type: DataTypes.STRING
-    },
-    address: {
-      type: DataTypes.STRING
-    },
+    province: DataTypes.STRING,
+    district: DataTypes.STRING,
+    ward: DataTypes.STRING,
+    address: DataTypes.STRING,
     beneficiaryCount: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      field: 'beneficiary_count',
-      validate: {
-        min: 1
-      }
+      field: 'beneficiary_count'
     },
-    description: {
-      type: DataTypes.TEXT
-    },
+    description: DataTypes.TEXT,
     proofImages: {
       type: DataTypes.STRING,
-      field: 'proof_images',
-      validate: {
-        isUrl: true
-      }
+      field: 'proof_images'
     },
     representativeName: {
       type: DataTypes.STRING,
@@ -99,8 +77,8 @@ module.exports = (sequelize) => {
     sequelize,
     modelName: 'Distribution',
     tableName: 'Distributions',
-    underscored: true,
-    timestamps: true
+    timestamps: true,
+    underscored: true
   });
 
   return Distribution;

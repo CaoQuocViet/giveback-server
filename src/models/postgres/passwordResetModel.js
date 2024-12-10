@@ -46,8 +46,8 @@ module.exports = (sequelize) => {
     sequelize,
     modelName: 'PasswordReset',
     tableName: 'PasswordResets',
-    underscored: true,
     timestamps: true,
+    createdAt: 'created_at',
     updatedAt: false
   });
 

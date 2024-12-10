@@ -1,7 +1,6 @@
 'use strict';
 
 const { Model, DataTypes } = require('sequelize');
-const { Role } = require('./types');
 
 module.exports = (sequelize) => {
   class Comment extends Model {
@@ -46,10 +45,7 @@ module.exports = (sequelize) => {
     },
     content: {
       type: DataTypes.TEXT,
-      allowNull: false,
-      validate: {
-        notEmpty: true
-      }
+      allowNull: false
     },
     rating: {
       type: DataTypes.DECIMAL,
@@ -60,17 +56,17 @@ module.exports = (sequelize) => {
       }
     },
     role: {
-      type: DataTypes.ENUM(...Object.values(Role)),
+      type: '"Role"',
       allowNull: false
     }
   }, {
     sequelize,
     modelName: 'Comment',
     tableName: 'Comments',
-    underscored: true,
     timestamps: true,
-    updatedAt: false // Comment không cần updatedAt
+    createdAt: 'created_at',
+    updatedAt: false
   });
 
   return Comment;
-}; 
+};

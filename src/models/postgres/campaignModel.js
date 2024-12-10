@@ -49,46 +49,31 @@ module.exports = (sequelize) => {
     },
     title: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true
-      }
+      allowNull: false
     },
-    description: {
-      type: DataTypes.TEXT
-    },
+    description: DataTypes.TEXT,
     detailGoal: {
       type: DataTypes.TEXT,
       field: 'detail_goal'
     },
     status: {
-      type: DataTypes.ENUM(...Object.values(CampaignStatus)),
+      type: '"CampaignStatus"',
       allowNull: false,
       defaultValue: 'STARTING'
     },
     rating: {
       type: DataTypes.DECIMAL,
-      defaultValue: 0,
-      validate: {
-        min: 0,
-        max: 5
-      }
+      defaultValue: 0
     },
     targetAmount: {
       type: DataTypes.DECIMAL,
       allowNull: false,
-      field: 'target_amount',
-      validate: {
-        min: 0
-      }
+      field: 'target_amount'
     },
     currentAmount: {
       type: DataTypes.DECIMAL,
       defaultValue: 0,
-      field: 'current_amount',
-      validate: {
-        min: 0
-      }
+      field: 'current_amount'
     },
     startDate: {
       type: DataTypes.DATE,
@@ -98,33 +83,15 @@ module.exports = (sequelize) => {
     endDate: {
       type: DataTypes.DATE,
       allowNull: false,
-      field: 'end_date',
-      validate: {
-        isAfterStartDate(value) {
-          if (value <= this.startDate) {
-            throw new Error('End date must be after start date');
-          }
-        }
-      }
+      field: 'end_date'
     },
-    province: {
-      type: DataTypes.STRING
-    },
-    district: {
-      type: DataTypes.STRING
-    },
-    ward: {
-      type: DataTypes.STRING
-    },
-    address: {
-      type: DataTypes.STRING
-    },
+    province: DataTypes.STRING,
+    district: DataTypes.STRING,
+    ward: DataTypes.STRING,
+    address: DataTypes.STRING,
     images: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isUrl: true
-      }
+      allowNull: false
     },
     editHistory: {
       type: DataTypes.JSONB,
@@ -134,8 +101,8 @@ module.exports = (sequelize) => {
     sequelize,
     modelName: 'Campaign',
     tableName: 'Campaigns',
-    underscored: true,
-    timestamps: true
+    timestamps: true,
+    underscored: true
   });
 
   return Campaign;

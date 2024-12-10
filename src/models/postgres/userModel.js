@@ -37,26 +37,17 @@ export default (sequelize) => {
     fullName: {
       type: DataTypes.STRING,
       allowNull: false,
-      field: 'full_name',
-      validate: {
-        notEmpty: true
-      }
+      field: 'full_name'
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
-      validate: {
-        isEmail: true
-      }
+      unique: true
     },
     phone: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
-      validate: {
-        is: /^[0-9]{10,11}$/
-      }
+      unique: true
     },
     otpVerified: {
       type: DataTypes.BOOLEAN,
@@ -69,24 +60,28 @@ export default (sequelize) => {
       allowNull: false
     },
     role: {
-      type: DataTypes.ENUM(...Object.values(Role)),
+      type: '"Role"',
       allowNull: false
     },
     profileImage: {
       type: DataTypes.STRING,
       field: 'profile_image'
     },
-    province: {
-      type: DataTypes.STRING
+    province: DataTypes.STRING,
+    district: DataTypes.STRING,
+    ward: DataTypes.STRING,
+    address: DataTypes.STRING,
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+      field: 'created_at'
     },
-    district: {
-      type: DataTypes.STRING
-    },
-    ward: {
-      type: DataTypes.STRING
-    },
-    address: {
-      type: DataTypes.STRING
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+      field: 'updated_at'
     },
     phoneVerifiedAt: {
       type: DataTypes.DATE,
@@ -96,8 +91,8 @@ export default (sequelize) => {
     sequelize,
     modelName: 'User',
     tableName: 'Users',
-    underscored: true,
-    timestamps: true
+    timestamps: true,
+    underscored: true
   });
 
   return User;
