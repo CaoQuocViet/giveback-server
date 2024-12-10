@@ -1,9 +1,9 @@
-import express from "express";
-import dotenv from "dotenv";
-import cors from "./middlewares/cors.js";
-import authRoutes from "./routes/authRoutes.js";
-import { connectPostgres } from './database/postgresConnect.js';
-import models from './database/models.js';
+const express = require("express");
+const dotenv = require("dotenv");
+const cors = require("./middlewares/cors");
+const authRoutes = require("./routes/authRoutes");
+const { connectPostgres } = require('./database/postgresConnect');
+const models = require('./database/models');
 
 dotenv.config();
 const app = express();

@@ -1,9 +1,10 @@
 'use strict';
 
-import { Sequelize } from 'sequelize';
-import config from '../../config/database.js';
-import userModel from './userModel.js';
-import adminModel from './adminModel.js';
+const { Sequelize } = require('sequelize');
+const config = require('../../config/connectDB');
+const userModel = require('./userModel');
+const adminModel = require('./adminModel');
+const paymentMethodModel = require('./paymentMethodModel');
 
 const env = process.env.NODE_ENV || 'development';
 const dbConfig = config[env];
@@ -26,7 +27,8 @@ const sequelize = new Sequelize(
 
 const models = {
   User: userModel(sequelize),
-  Admin: adminModel(sequelize)
+  Admin: adminModel(sequelize),
+  PaymentMethod: paymentMethodModel(sequelize)
 };
 
 // Thiết lập associations
@@ -36,5 +38,5 @@ Object.keys(models).forEach(modelName => {
   }
 });
 
-export { sequelize };
-export default models;
+module.exports = models;
+module.exports.sequelize = sequelize;
