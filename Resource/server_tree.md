@@ -1,84 +1,84 @@
-giveback-server/
-├── src/
-│   ├── config/
-│   │   ├── config.js           # Database config
-│   │   └── constants.js        # App constants
+giveback-server/                  # Root directory của project
+├── src/                         # Source code chính
+│   ├── config/                  # Cấu hình hệ thống
+│   │   ├── config.js           # Cấu hình database, port, env vars
+│   │   └── constants.js        # Định nghĩa constants: roles, status, messages
 │   │
-│   ├── controllers/
-│   │   ├── auth.controller.js  # Xử lý auth
-│   │   ├── admin.controller.js # Xử lý admin actions
-│   │   ├── user.controller.js  # Xử lý user actions
-│   │   ├── charity.controller.js # Xử lý charity actions
-│   │   ├── donor.controller.js # Xử lý donor actions
-│   │   ├── campaign.controller.js # Xử lý campaign
-│   │   ├── comment.controller.js  # Xử lý comments
-│   │   └── upload.controller.js   # Xử lý file uploads
+│   ├── controllers/            # Business logic cho từng module
+│   │   ├── auth.controller.js  # Login, register, verify token
+│   │   ├── admin.controller.js # Quản lý system, verify tổ chức
+│   │   ├── user.controller.js  # CRUD user profile
+│   │   ├── charity.controller.js # CRUD tổ chức từ thiện
+│   │   ├── donor.controller.js # Xử lý quyên góp, lịch sử
+│   │   ├── campaign.controller.js # CRUD chiến dịch, thống kê
+│   │   ├── comment.controller.js  # CRUD comments, ratings
+│   │   └── upload.controller.js   # Upload files lên cloud storage
 │   │
-│   ├── middlewares/
-│   │   ├── auth.middleware.js    # JWT auth
-│   │   ├── role.middleware.js    # Role check
-│   │   ├── upload.middleware.js  # File upload
-│   │   ├── validate.middleware.js # Input validation
-│   │   └── error.middleware.js   # Error handling
+│   ├── middlewares/              # Xử lý trước khi vào controller
+│   │   ├── auth.middleware.js    # Verify JWT token
+│   │   ├── role.middleware.js    # Check user permissions
+│   │   ├── upload.middleware.js  # Process file uploads
+│   │   ├── validate.middleware.js # Validate request data
+│   │   └── error.middleware.js   # Global error handler
 │   │
-│   ├── models/
-│   │   ├── index.js
-│   │   ├── user.model.js
-│   │   ├── admin.model.js  
-│   │   ├── charity.model.js
-│   │   ├── campaign.model.js
-│   │   ├── donation.model.js
-│   │   ├── distribution.model.js
-│   │   ├── comment.model.js
-│   │   └── otp.model.js
+│   ├── models/                   # Database schemas
+│   │   ├── index.js             # Khởi tạo Sequelize, sync models
+│   │   ├── user.model.js        # Base user schema
+│   │   ├── admin.model.js       # Admin user schema
+│   │   ├── charity.model.js     # Charity org schema
+│   │   ├── campaign.model.js    # Campaign schema
+│   │   ├── donation.model.js    # Donation records schema
+│   │   ├── distribution.model.js # Distribution records schema
+│   │   ├── comment.model.js     # Comments & ratings schema
+│   │   └── otp.model.js         # OTP codes schema
 │   │
-│   ├── routes/
-│   │   ├── index.js
-│   │   ├── auth.routes.js
-│   │   ├── admin.routes.js
-│   │   ├── user.routes.js
-│   │   ├── charity.routes.js
-│   │   ├── donor.routes.js
-│   │   ├── campaign.routes.js
-│   │   └── upload.routes.js
+│   ├── routes/                   # API routes định nghĩa
+│   │   ├── index.js             # Combine & export all routes
+│   │   ├── auth.routes.js       # /api/auth routes
+│   │   ├── admin.routes.js      # /api/admin routes
+│   │   ├── user.routes.js       # /api/users routes
+│   │   ├── charity.routes.js    # /api/charities routes
+│   │   ├── donor.routes.js      # /api/donors routes
+│   │   ├── campaign.routes.js   # /api/campaigns routes
+│   │   └── upload.routes.js     # /api/upload routes
 │   │
-│   ├── services/
-│   │   ├── auth.service.js
-│   │   ├── mail.service.js
-│   │   ├── sms.service.js
-│   │   ├── payment.service.js
-│   │   └── upload.service.js
+│   ├── services/                 # Third-party services
+│   │   ├── auth.service.js      # JWT & password hashing
+│   │   ├── mail.service.js      # Email service (NodeMailer)
+│   │   ├── sms.service.js       # SMS service (Twilio)
+│   │   ├── payment.service.js   # Payment gateway integration
+│   │   └── upload.service.js    # Cloud storage service
 │   │
-│   ├── utils/
-│   │   ├── jwt.js
-│   │   ├── hash.js
-│   │   ├── validate.js
-│   │   └── response.js
+│   ├── utils/                    # Helper functions
+│   │   ├── jwt.js               # JWT utils
+│   │   ├── hash.js              # Password hashing utils
+│   │   ├── validate.js          # Input validation utils
+│   │   └── response.js          # API response formatter
 │   │
-│   └── server.js
+│   └── server.js                 # Express app entry point
 │
-├── tests/
-│   ├── auth.test.js
-│   ├── admin.test.js
-│   ├── charity.test.js
-│   └── campaign.test.js
+├── tests/                        # Unit & integration tests
+│   ├── auth.test.js             # Authentication tests
+│   ├── admin.test.js            # Admin features tests
+│   ├── charity.test.js          # Charity features tests
+│   └── campaign.test.js         # Campaign features tests
 │
-├── Resource/
-│   ├── Functional flow/
-│   │   ├── auth/
-│   │   ├── admin/ 
-│   │   ├── charity/
-│   │   ├── donor/
-│   │   └── common/
+├── Resource/                     # Documentation
+│   ├── Functional flow/          # Business logic flows
+│   │   ├── auth/                # Auth process flows
+│   │   ├── admin/               # Admin process flows
+│   │   ├── charity/             # Charity process flows
+│   │   ├── donor/               # Donation process flows
+│   │   └── common/              # Shared process flows
 │   │
-│   └── Routes/
-│       ├── auth.routes.md
-│       ├── admin.routes.md
-│       ├── charity.routes.md
-│       ├── donor.routes.md
-│       └── common.routes.md
+│   └── Routes/                   # API documentation
+│       ├── auth.routes.md       # Auth API specs
+│       ├── admin.routes.md      # Admin API specs
+│       ├── charity.routes.md    # Charity API specs
+│       ├── donor.routes.md      # Donor API specs
+│       └── common.routes.md     # Common API specs
 │
-├── .env
-├── .gitignore
-├── package.json
-└── README.md
+├── .env                          # Environment variables
+├── .gitignore                    # Git ignore rules
+├── package.json                  # Project dependencies & scripts
+└── README.md                     # Project overview & setup guide
