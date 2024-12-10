@@ -16,9 +16,7 @@ module.exports = {
         references: {
           model: 'Campaigns',
           key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        }
       },
       donorId: {
         type: Sequelize.STRING,
@@ -27,9 +25,7 @@ module.exports = {
         references: {
           model: 'Users',
           key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        }
       },
       paymentMethodId: {
         type: Sequelize.STRING,
@@ -38,9 +34,7 @@ module.exports = {
         references: {
           model: 'PaymentMethods',
           key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        }
       },
       amount: {
         type: Sequelize.DECIMAL,
@@ -66,7 +60,7 @@ module.exports = {
         field: 'is_anonymous'
       },
       status: {
-        type: Sequelize.ENUM('PENDING', 'COMPLETED', 'FAILED', 'CANCELLED'),
+        type: '"PaymentStatus"',
         allowNull: false,
         defaultValue: 'PENDING'
       },
@@ -78,14 +72,14 @@ module.exports = {
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        field: 'created_at',
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        field: 'created_at'
       },
       updatedAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        field: 'updated_at',
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        field: 'updated_at'
       }
     });
 
@@ -99,18 +93,9 @@ module.exports = {
     await queryInterface.addIndex('Donations', ['payment_method_id'], {
       name: 'idx_donations_payment_method'
     });
-    await queryInterface.addIndex('Donations', ['status'], {
-      name: 'idx_donations_status'
-    });
   },
 
   async down(queryInterface, Sequelize) {
-    // Xóa các indexes trước
-    await queryInterface.removeIndex('Donations', 'idx_donations_campaign');
-    await queryInterface.removeIndex('Donations', 'idx_donations_donor');
-    await queryInterface.removeIndex('Donations', 'idx_donations_payment_method');
-    await queryInterface.removeIndex('Donations', 'idx_donations_status');
-    
     await queryInterface.dropTable('Donations');
   }
 };

@@ -16,44 +16,68 @@ module.exports = {
         references: {
           model: 'Campaigns',
           key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        }
       },
-      beneficiaryId: {
+      title: {
         type: Sequelize.STRING,
-        allowNull: false,
-        field: 'beneficiary_id',
-        references: {
-          model: 'Users',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        allowNull: false
       },
-      amount: {
+      budget: {
         type: Sequelize.DECIMAL,
         allowNull: false
       },
-      note: {
+      distributionDate: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        field: 'distribution_date'
+      },
+      province: {
+        type: Sequelize.STRING
+      },
+      district: {
+        type: Sequelize.STRING
+      },
+      ward: {
+        type: Sequelize.STRING
+      },
+      address: {
+        type: Sequelize.STRING
+      },
+      beneficiaryCount: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        field: 'beneficiary_count'
+      },
+      description: {
         type: Sequelize.TEXT
       },
-      status: {
-        type: Sequelize.ENUM('PENDING', 'COMPLETED', 'FAILED', 'CANCELLED'),
-        allowNull: false,
-        defaultValue: 'PENDING'
+      proofImages: {
+        type: Sequelize.STRING,
+        field: 'proof_images'
+      },
+      representativeName: {
+        type: Sequelize.STRING,
+        field: 'representative_name',
+        references: {
+          model: 'Users',
+          key: 'id'
+        }
+      },
+      reliefDate: {
+        type: Sequelize.DATE,
+        field: 'relief_date'
       },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        field: 'created_at',
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        field: 'created_at'
       },
       updatedAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        field: 'updated_at',
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        field: 'updated_at'
       }
     });
 
@@ -61,19 +85,23 @@ module.exports = {
     await queryInterface.addIndex('Distributions', ['campaign_id'], {
       name: 'idx_distributions_campaign'
     });
-    await queryInterface.addIndex('Distributions', ['beneficiary_id'], {
-      name: 'idx_distributions_beneficiary'
+    await queryInterface.addIndex('Distributions', ['distribution_date'], {
+      name: 'idx_distributions_date'
     });
-    await queryInterface.addIndex('Distributions', ['status'], {
-      name: 'idx_distributions_status'
+    await queryInterface.addIndex('Distributions', ['province', 'district'], {
+      name: 'idx_distributions_location'
+    });
+    await queryInterface.addIndex('Distributions', ['budget'], {
+      name: 'idx_distributions_budget'
     });
   },
 
   async down(queryInterface, Sequelize) {
     // Xóa các indexes trước
     await queryInterface.removeIndex('Distributions', 'idx_distributions_campaign');
-    await queryInterface.removeIndex('Distributions', 'idx_distributions_beneficiary');
-    await queryInterface.removeIndex('Distributions', 'idx_distributions_status');
+    await queryInterface.removeIndex('Distributions', 'idx_distributions_date');
+    await queryInterface.removeIndex('Distributions', 'idx_distributions_location');
+    await queryInterface.removeIndex('Distributions', 'idx_distributions_budget');
     
     await queryInterface.dropTable('Distributions');
   }

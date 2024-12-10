@@ -34,7 +34,7 @@ module.exports = (sequelize) => {
     modelName: 'PaymentMethod',
     tableName: 'PaymentMethods',
     underscored: true,
-    timestamps: true
+    timestamps: false
   });
 
   return PaymentMethod;

@@ -16,9 +16,7 @@ module.exports = {
         references: {
           model: 'Campaigns',
           key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        }
       },
       userId: {
         type: Sequelize.STRING,
@@ -27,9 +25,7 @@ module.exports = {
         references: {
           model: 'Users',
           key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        }
       },
       content: {
         type: Sequelize.TEXT,
@@ -44,7 +40,7 @@ module.exports = {
         }
       },
       role: {
-        type: Sequelize.ENUM('ADMIN', 'DONOR', 'CHARITY', 'BENEFICIARY'),
+        type: '"Role"',
         allowNull: false
       },
       createdAt: {
@@ -62,17 +58,9 @@ module.exports = {
     await queryInterface.addIndex('Comments', ['user_id'], {
       name: 'idx_comments_user'
     });
-    await queryInterface.addIndex('Comments', ['role'], {
-      name: 'idx_comments_role'
-    });
   },
 
   async down(queryInterface, Sequelize) {
-    // Xóa các indexes trước
-    await queryInterface.removeIndex('Comments', 'idx_comments_campaign');
-    await queryInterface.removeIndex('Comments', 'idx_comments_user');
-    await queryInterface.removeIndex('Comments', 'idx_comments_role');
-    
     await queryInterface.dropTable('Comments');
   }
 };

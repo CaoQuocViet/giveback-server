@@ -1,19 +1,29 @@
 import { Model, DataTypes } from 'sequelize';
+const { Role } = require('./types');
 
 export default (sequelize) => {
   class User extends Model {
     static associate(models) {
-      User.hasOne(models.Admin, {
-        foreignKey: 'id'
-      });
       User.hasOne(models.Charity, {
-        foreignKey: 'id'
+        foreignKey: 'id',
+        as: 'charity'
       });
       User.hasMany(models.Donation, {
-        foreignKey: 'donor_id'
+        foreignKey: 'donor_id',
+        as: 'donations'
       });
       User.hasMany(models.Comment, {
-        foreignKey: 'user_id'
+        foreignKey: 'user_id',
+        as: 'comments'
+      });
+      User.hasMany(models.OTPCode, {
+        foreignKey: 'phone',
+        sourceKey: 'phone',
+        as: 'otpCodes'
+      });
+      User.hasMany(models.PasswordReset, {
+        foreignKey: 'user_id',
+        as: 'passwordResets'
       });
     }
   }
@@ -27,17 +37,26 @@ export default (sequelize) => {
     fullName: {
       type: DataTypes.STRING,
       allowNull: false,
-      field: 'full_name'
+      field: 'full_name',
+      validate: {
+        notEmpty: true
+      }
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
+      unique: true,
+      validate: {
+        isEmail: true
+      }
     },
     phone: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
+      unique: true,
+      validate: {
+        is: /^[0-9]{10,11}$/
+      }
     },
     otpVerified: {
       type: DataTypes.BOOLEAN,
@@ -50,17 +69,25 @@ export default (sequelize) => {
       allowNull: false
     },
     role: {
-      type: DataTypes.ENUM('ADMIN', 'DONOR', 'CHARITY', 'BENEFICIARY'),
+      type: DataTypes.ENUM(...Object.values(Role)),
       allowNull: false
     },
     profileImage: {
       type: DataTypes.STRING,
       field: 'profile_image'
     },
-    province: DataTypes.STRING,
-    district: DataTypes.STRING,
-    ward: DataTypes.STRING,
-    address: DataTypes.STRING,
+    province: {
+      type: DataTypes.STRING
+    },
+    district: {
+      type: DataTypes.STRING
+    },
+    ward: {
+      type: DataTypes.STRING
+    },
+    address: {
+      type: DataTypes.STRING
+    },
     phoneVerifiedAt: {
       type: DataTypes.DATE,
       field: 'phone_verified_at'
@@ -69,8 +96,8 @@ export default (sequelize) => {
     sequelize,
     modelName: 'User',
     tableName: 'Users',
-    timestamps: true,
-    underscored: true
+    underscored: true,
+    timestamps: true
   });
 
   return User;

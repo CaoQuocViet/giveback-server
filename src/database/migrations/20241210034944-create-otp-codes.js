@@ -15,9 +15,7 @@ module.exports = {
         references: {
           model: 'Users',
           key: 'phone'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        }
       },
       code: {
         type: Sequelize.STRING,
@@ -45,14 +43,18 @@ module.exports = {
       }
     });
 
-    // Tạo index cho phone
+    // Tạo các indexes
     await queryInterface.addIndex('OTPCodes', ['phone'], {
-      name: 'idx_otp_codes_phone'
+      name: 'idx_otpcodes_phone'
+    });
+    await queryInterface.addIndex('OTPCodes', ['expires_at'], {
+      name: 'idx_otpcodes_expires'
     });
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.removeIndex('OTPCodes', 'idx_otp_codes_phone');
+    await queryInterface.removeIndex('OTPCodes', 'idx_otpcodes_phone');
+    await queryInterface.removeIndex('OTPCodes', 'idx_otpcodes_expires');
     await queryInterface.dropTable('OTPCodes');
   }
 };

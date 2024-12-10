@@ -16,32 +16,37 @@ module.exports = {
         references: {
           model: 'Charities',
           key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        }
       },
       title: {
         type: Sequelize.STRING,
         allowNull: false
       },
       description: {
-        type: Sequelize.TEXT,
-        allowNull: false
+        type: Sequelize.TEXT
       },
-      coverImage: {
-        type: Sequelize.STRING,
-        field: 'cover_image'
+      detailGoal: {
+        type: Sequelize.TEXT,
+        field: 'detail_goal'
+      },
+      status: {
+        type: '"CampaignStatus"',
+        allowNull: false,
+        defaultValue: 'STARTING'
+      },
+      rating: {
+        type: Sequelize.DECIMAL,
+        defaultValue: 0
       },
       targetAmount: {
         type: Sequelize.DECIMAL,
         allowNull: false,
         field: 'target_amount'
       },
-      raisedAmount: {
+      currentAmount: {
         type: Sequelize.DECIMAL,
-        allowNull: false,
         defaultValue: 0,
-        field: 'raised_amount'
+        field: 'current_amount'
       },
       startDate: {
         type: Sequelize.DATE,
@@ -52,11 +57,6 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
         field: 'end_date'
-      },
-      status: {
-        type: Sequelize.ENUM('PENDING', 'ACTIVE', 'ENDED', 'CANCELLED'),
-        allowNull: false,
-        defaultValue: 'PENDING'
       },
       province: {
         type: Sequelize.STRING
@@ -70,17 +70,25 @@ module.exports = {
       address: {
         type: Sequelize.STRING
       },
+      images: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      editHistory: {
+        type: Sequelize.JSONB,
+        field: 'edit_history'
+      },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        field: 'created_at',
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        field: 'created_at'
       },
       updatedAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        field: 'updated_at',
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        field: 'updated_at'
       }
     });
 
@@ -88,19 +96,11 @@ module.exports = {
     await queryInterface.addIndex('Campaigns', ['charity_id'], {
       name: 'idx_campaigns_charity'
     });
-    await queryInterface.addIndex('Campaigns', ['status'], {
-      name: 'idx_campaigns_status'
-    });
-    await queryInterface.addIndex('Campaigns', ['province', 'district'], {
-      name: 'idx_campaigns_location'
-    });
   },
 
   async down(queryInterface, Sequelize) {
     // Xóa các indexes trước
     await queryInterface.removeIndex('Campaigns', 'idx_campaigns_charity');
-    await queryInterface.removeIndex('Campaigns', 'idx_campaigns_status');
-    await queryInterface.removeIndex('Campaigns', 'idx_campaigns_location');
     
     await queryInterface.dropTable('Campaigns');
   }

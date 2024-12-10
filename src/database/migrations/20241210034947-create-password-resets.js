@@ -16,9 +16,7 @@ module.exports = {
         references: {
           model: 'Users',
           key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        }
       },
       token: {
         type: Sequelize.STRING,
@@ -42,18 +40,18 @@ module.exports = {
       }
     });
 
-    // Tạo index cho user_id và token
-    await queryInterface.addIndex('PasswordResets', ['user_id'], {
-      name: 'idx_password_resets_user'
-    });
+    // Tạo các indexes
     await queryInterface.addIndex('PasswordResets', ['token'], {
-      name: 'idx_password_resets_token'
+      name: 'idx_passwordresets_token'
+    });
+    await queryInterface.addIndex('PasswordResets', ['expires_at'], {
+      name: 'idx_passwordresets_expires'
     });
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.removeIndex('PasswordResets', 'idx_password_resets_user');
-    await queryInterface.removeIndex('PasswordResets', 'idx_password_resets_token');
+    await queryInterface.removeIndex('PasswordResets', 'idx_passwordresets_token');
+    await queryInterface.removeIndex('PasswordResets', 'idx_passwordresets_expires');
     await queryInterface.dropTable('PasswordResets');
   }
 };
