@@ -9,7 +9,9 @@
 		"preview": "vite preview",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "node ./src/server.js",
-		"server": "nodemon ./src/server.js"
+		"server": "nodemon ./src/server.js",
+		"seed": "sequelize-cli db:seed:all",
+		"seed:undo": "sequelize-cli db:seed:undo:all"
 	},
 	"devDependencies": {
 		"nodemon": "^3.0.2",
