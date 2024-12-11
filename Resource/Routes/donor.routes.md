@@ -4,6 +4,7 @@
 - Quản lý đóng góp
 - Tương tác với chiến dịch (bình luận, đánh giá)
 - Xem lịch sử đóng góp
+- Xem báo cáo đóng góp cá nhân
 
 ## Routes
 
@@ -15,16 +16,18 @@ Headers:
 
 Request Body:
 - campaign_id: string (required) - ID chiến dịch
-- amount: number (required) - Số tiền đóng góp
-- payment_method: string (required) - Phương thức thanh toán (VNPAY/MOMO)
-- message: string - Lời nhắn
+- amount: number (required) - Số tiền đóng góp (>= 10,000 VND)
+- payment_method: string (required) - Phương thức thanh toán (ZALOPAY|VNPAY|MOMO)
+- message: string - Lời nhắn (tối đa 500 ký tự)
+- is_anonymous: boolean - Ẩn danh hay không
 
 Response Success:
 {
   "success": true,
   "data": {
     "payment_url": "URL thanh toán",
-    "order_id": "Mã đơn hàng"
+    "order_id": "Mã đơn hàng",
+    "expires_at": "2024-03-20T00:15:00Z"
   }
 }
 
@@ -133,6 +136,49 @@ Response Success:
   "message": "Xóa thành công"
 }
 
+### GET /api/donations/report
+Xem báo cáo đóng góp cá nhân
+
+Headers:
+- Authorization: Bearer <token>
+
+Query Parameters:
+- format: string - Định dạng xuất (pdf|excel)
+- from_date: date - Từ ngày
+- to_date: date - Đến ngày
+- type: string - Loại báo cáo (summary|detail)
+
+Response Success:
+{
+  "success": true,
+  "data": {
+    "total_donated": number,
+    "campaign_joined": number,
+    "donation_by_month": [{
+      "month": "2024-03",
+      "amount": number
+    }],
+    "donation_by_category": [{
+      "category": string,
+      "amount": number,
+      "count": number
+    }],
+    "donations": [
+      {
+        "campaign_title": string,
+        "charity_name": string,
+        "amount": number,
+        "status": string,
+        "payment_method": string,
+        "message": string,
+        "created_at": datetime
+      }
+    ],
+    "file_url": string,
+    "expires_at": datetime
+  }
+}
+
 ## Error Responses (4xx/5xx)
 {
   "success": false,
@@ -146,8 +192,17 @@ Response Success:
 - Chỉ được sửa/xóa bình luận của chính mình
 - Không thể sửa/xóa bình luận sau 24h
 - Không thể đóng góp cho chiến dịch đã kết thúc/đóng
+- Không thể đóng góp cho chiến dịch của tổ chức chưa được xác thực
+- Lời nhắn không được quá 500 ký tự
+- URL thanh toán chỉ có hiệu lực trong 15 phút
+- Giới hạn số lần tạo URL thanh toán: 5 lần/campaign/ngày
+- File báo cáo có hiệu lực trong 24h
 
 ## Notes
-- Thanh toán được xử lý qua cổng thanh toán (VNPAY/MOMO)
+- Thanh toán được xử lý qua các cổng thanh toán (ZALOPAY|VNPAY|MOMO)
 - Rating của chiến dịch được tự động cập nhật khi có đánh giá mới
 - Thống kê đóng góp được cache và cập nhật mỗi giờ
+- Báo cáo có thể xuất PDF hoặc Excel
+- Lưu log mọi thao tác thanh toán
+- Gửi email thông báo khi thanh toán thành công
+- Cache thông tin chiến dịch để tối ưu hiệu năng

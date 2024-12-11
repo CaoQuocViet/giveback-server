@@ -1,76 +1,90 @@
-import pool from "../config/postgresConfig.js";
-import bcrypt from "bcryptjs";
+const { User } = require("../models");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const { v4: uuidv4 } = require("uuid");
 
-export const register = async (req, res) => {
+const register = async (req, res) => {
 	try {
 		const { email, password, phoneNumber, hoTen } = req.body;
 
-		const existingUserQuery = 'SELECT * FROM "nguoidung" WHERE email = $1';
-		const existingUser = await pool.query(existingUserQuery, [email]);
-
-		if (existingUser.rows.length > 0) {
+		// Kiểm tra email đã tồn tại
+		const existingUser = await User.findOne({ where: { email } });
+		if (existingUser) {
 			return res.status(400).json({ error: "Email đã được sử dụng" });
 		}
 
+		// Tạo user mới
 		const hashedPassword = await bcrypt.hash(password, 10);
-
-		const { v4: uuidv4 } = await import("uuid");
-		const userId = uuidv4();
-
-		// Lưu user mới vào database
-		const insertUserQuery = `
-      INSERT INTO "nguoidung" (id, ho_ten, email, so_dien_thoai, mat_khau, vai_tro)
-      VALUES ($1, $2, $3, $4, $5, 'NGUOIDONGGOP')
-    `;
-		await pool.query(insertUserQuery, [
-			userId,
-			hoTen,
+		const user = await User.create({
+			id: uuidv4(),
+			full_name: hoTen,
 			email,
-			phoneNumber,
-			hashedPassword,
-		]);
+			phone: phoneNumber,
+			password: hashedPassword,
+			role: 'DONOR',
+			otp_verified: false
+		});
 
-		return res
-			.status(201)
-			.json({ success: true, message: "Đăng ký thành công" });
+		return res.status(201).json({ 
+			success: true, 
+			message: "Đăng ký thành công" 
+		});
+
 	} catch (error) {
 		console.error("Registration error:", error);
 		return res.status(500).json({ error: "Đăng ký thất bại" });
 	}
 };
 
-export const login = async (req, res) => {
+const login = async (req, res) => {
 	try {
 		const { email, password } = req.body;
 
-		const userQuery = 'SELECT * FROM "nguoidung" WHERE email = $1';
-		const userResult = await pool.query(userQuery, [email]);
-
-		if (userResult.rows.length === 0) {
-			return res
-				.status(400)
-				.json({ error: "Email hoặc mật khẩu không chính xác" });
+		// Tìm user theo email
+		const user = await User.findOne({ where: { email } });
+		if (!user) {
+			return res.status(400).json({ 
+				error: "Email hoặc mật khẩu không chính xác" 
+			});
 		}
 
-		const user = userResult.rows[0];
-
-		const isMatch = await bcrypt.compare(password, user.mat_khau);
+		// Kiểm tra mật khẩu
+		const isMatch = await bcrypt.compare(password, user.password);
 		if (!isMatch) {
-			return res
-				.status(400)
-				.json({ error: "Email hoặc mật khẩu không chính xác" });
+			return res.status(400).json({ 
+				error: "Email hoặc mật khẩu không chính xác" 
+			});
 		}
 
-		const jwt = (await import("jsonwebtoken")).default;
+		// Tạo JWT token
 		const token = jwt.sign(
-			{ id: user.id, email: user.email, vaiTro: user.vai_tro },
+			{ 
+				id: user.id, 
+				email: user.email, 
+				role: user.role 
+			},
 			process.env.JWT_SECRET,
-			{ expiresIn: "1h" },
+			{ expiresIn: "1h" }
 		);
 
-		return res.json({ success: true, token });
+		return res.json({ 
+			success: true, 
+			token,
+			user: {
+				id: user.id,
+				full_name: user.full_name,
+				email: user.email,
+				role: user.role
+			}
+		});
+
 	} catch (error) {
 		console.error("Login error:", error);
 		return res.status(500).json({ error: "Đăng nhập thất bại" });
 	}
+};
+
+module.exports = {
+	register,
+	login
 };

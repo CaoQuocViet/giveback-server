@@ -1,10 +1,10 @@
 # Authentication Routes
 
 ## Mục đích
-- Xử lý đăng ký tài khoản mới
-- Xác thực người dùng qua OTP
-- Đăng nhập/đăng xuất
-- Quên mật khẩu và reset password
+- Đăng ký và xác thực người dùng
+- Quản lý phiên đăng nhập
+- Xử lý quên/đặt lại mật khẩu
+- Xác thực OTP
 
 ## Routes
 
@@ -12,73 +12,65 @@
 Đăng ký tài khoản mới
 
 Request Body:
-- email: string (required) - Email đăng ký
-- password: string (required) - Mật khẩu
-- confirm_password: string (required) - Xác nhận mật khẩu  
 - full_name: string (required) - Họ tên
+- email: string (required) - Email đăng ký
 - phone: string (required) - Số điện thoại
-- role: enum (required) - DONOR | CHARITY | BENEFICIARY
-- province: string (required) - Tỉnh/Thành
-- district: string (required) - Quận/Huyện
-- ward: string (required) - Phường/Xã
-- address: string (required) - Địa chỉ cụ thể
+- password: string (required) - Mật khẩu (min: 8 ký tự)
+- role: enum (required) - Loại tài khoản (DONOR|CHARITY)
+- profile_image: string - URL ảnh đại diện
 
-Thêm cho CHARITY:
-- title: string (required) - Tên tổ chức
-- description: text (required) - Mô tả
-- license_number: string (required) - Số giấy phép
-- license_date: date (required) - Ngày cấp
-- license_issuer: string (required) - Cơ quan cấp
-- license_image: File (required) - Ảnh giấy phép
+Charity Required Fields:
+- title: string - Tên tổ chức
+- description: text - Mô tả tổ chức
+- license_number: string - Số giấy phép
+- license_date: date - Ngày cấp
+- license_issuer: string - Đơn vị cấp phép
+- license_image_url: string - URL ảnh giấy phép
+- province: string - Tỉnh/thành
+- district: string - Quận/huyện
+- ward: string - Phường/xã
+- address: string - Địa chỉ cụ thể
 
 Response Success:
 {
   "success": true,
-  "message": "Đăng ký thành công",
+  "message": "Đăng ký thành công. Vui lòng xác thực OTP",
   "data": {
-    "id": "uuid",
-    "email": "string",
-    "phone": "string"
+    "user_id": "uuid",
+    "email": "email@domain.com"
   }
 }
 
-### POST /api/auth/verify-otp
-Xác thực OTP
-
-Request Body:
-- phone: string (required) - Số điện thoại
-- code: string (required) - Mã OTP (6 số)
-
-Response Success:
-{
-  "success": true,
-  "message": "Xác thực thành công"
-}
-
-### POST /api/auth/login 
+### POST /api/auth/login
 Đăng nhập
 
 Request Body:
-- username: string (required) - Email hoặc số điện thoại
+- email: string (required) - Email đăng nhập
 - password: string (required) - Mật khẩu
+- remember_me: boolean - Ghi nhớ đăng nhập
 
 Response Success:
 {
   "success": true,
-  "message": "Đăng nhập thành công",
   "data": {
-    "token": "JWT token",
+    "access_token": "JWT token",
+    "refresh_token": "Refresh token",
+    "expires_in": 3600,
     "user": {
       "id": "uuid",
-      "email": "string",
-      "role": "enum",
-      "full_name": "string"
+      "full_name": string,
+      "email": string,
+      "phone": string,
+      "role": enum(ADMIN|DONOR|CHARITY),
+      "profile_image": string,
+      "is_verified": boolean,
+      "created_at": datetime
     }
   }
 }
 
 ### POST /api/auth/logout
-Đăng xuất (yêu cầu token)
+Đăng xuất
 
 Headers:
 - Authorization: Bearer <token>
@@ -89,8 +81,24 @@ Response Success:
   "message": "Đăng xuất thành công"
 }
 
-### POST /api/auth/forgot-password
-Yêu cầu reset password
+### POST /api/auth/verify-otp
+Xác thực OTP
+
+Request Body:
+- email: string (required) - Email đăng ký
+- otp: string (required) - Mã OTP (6 số)
+
+Response Success:
+{
+  "success": true,
+  "message": "Xác thực thành công",
+  "data": {
+    "access_token": "JWT token"
+  }
+}
+
+### POST /api/auth/resend-otp
+Gửi lại mã OTP
 
 Request Body:
 - email: string (required) - Email đăng ký
@@ -98,21 +106,33 @@ Request Body:
 Response Success:
 {
   "success": true,
-  "message": "Đã gửi link reset password"
+  "message": "Đã gửi lại mã OTP"
 }
 
-### POST /api/auth/reset-password
-Reset password với token
+### POST /api/auth/forgot-password
+Quên mật khẩu
 
 Request Body:
-- token: string (required) - Token từ email
-- password: string (required) - Mật khẩu mới
-- confirm_password: string (required) - Xác nhận mật khẩu
+- email: string (required) - Email đăng ký
 
 Response Success:
 {
   "success": true,
-  "message": "Đổi mật khẩu thành công"
+  "message": "Đã gửi link đặt lại mật khẩu qua email"
+}
+
+### POST /api/auth/reset-password
+Đặt lại mật khẩu
+
+Request Body:
+- token: string (required) - Token từ email
+- password: string (required) - Mật khẩu mới
+- password_confirmation: string (required) - Xác nhận mật khẩu
+
+Response Success:
+{
+  "success": true,
+  "message": "Đặt lại mật khẩu thành công"
 }
 
 ## Error Responses (4xx/5xx)
@@ -123,14 +143,10 @@ Response Success:
 }
 
 ## Validation Rules
-- Email: Đúng định dạng, chưa được sử dụng
-- Phone: 10 số, chưa được sử dụng
-- Password: Ít nhất 8 ký tự, có chữ hoa, chữ thường và số
-- OTP: 6 số, hết hạn sau 5 phút
-- Reset token: Hết hạn sau 30 phút
-
-## Notes
-- OTP được gửi qua SMS
-- Reset password link được gửi qua email
-- Token JWT hết hạn sau 24h
-- Giới hạn số lần gửi OTP và reset password
+- Email phải là email hợp lệ và chưa được sử dụng
+- Số điện thoại phải là số Việt Nam hợp lệ
+- Mật khẩu ít nhất 8 ký tự
+- OTP có 6 chữ số và chỉ có hiệu lực trong 5 phút
+- Token reset password chỉ có hiệu lực trong 30 phút
+- Giới hạn số lần gửi lại OTP: 3 lần/email/ngày
+- Giới hạn số lần reset password: 3 lần/email/ngày

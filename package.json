@@ -27,7 +27,8 @@
 		"helmet": "^7.1.0",
 		"jsonwebtoken": "^9.0.2",
 		"morgan": "^1.10.0",
-		"pg": "^8.11.3",
+		"node-cache": "^5.1.2",
+		"pg": "^8.13.1",
 		"pg-hstore": "^2.3.4",
 		"sequelize": "^6.37.1",
 		"uuid": "^11.0.3"

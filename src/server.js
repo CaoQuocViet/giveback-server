@@ -3,11 +3,16 @@ const cors = require("cors");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const compression = require("compression");
-// const routes = require("./routes"); // Tạm comment lại
+const administrativeRoutes = require("./routes/administrative.routes");
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 app.use(express.json());
-app.use(cors());  // Sửa lại từ app.use(cors) thành app.use(cors())
+app.use(cors({
+	origin: "http://localhost:3000",
+	methods: ["GET", "POST", "PUT", "DELETE"],
+	credentials: true
+}));
 app.use(morgan("dev"));
 app.use(helmet());
 app.use(compression());
@@ -18,8 +23,9 @@ app.get("/", (req, res) => {
 	res.send("Server is running");
 });
 
-// Tạm comment lại route auth
-// app.use("/api/auth", routes.authRoutes);
+// Thêm route administrative
+app.use("/api/administrative", administrativeRoutes);
+app.use("/api/auth", authRoutes);
 
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`);
