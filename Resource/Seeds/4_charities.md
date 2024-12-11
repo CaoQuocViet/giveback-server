@@ -14,8 +14,8 @@
 - founding_date: 2019-12-01
 - website: www.anhduong.org.vn
 - social_links: {
-    "facebook": "facebook.com/anhduong.charity",
-    "youtube": "youtube.com/anhduong_charity"
+    "facebook": "facebook.com",
+    "youtube": "youtube.com"
   }
 
 ### 1.2. Quỹ Hy Vọng Xanh
@@ -31,8 +31,8 @@
 - founding_date: 2020-01-15
 - website: www.hyvongxanh.org.vn
 - social_links: {
-    "facebook": "facebook.com/hyvongxanh",
-    "instagram": "instagram.com/hyvongxanh"
+    "facebook": "facebook.com",
+    "instagram": "instagram.com"
   }
 
 ### 1.3. Quỹ Nhân Ái
@@ -48,7 +48,7 @@
 - founding_date: 2020-03-01
 - website: www.nhanai.org.vn
 - social_links: {
-    "facebook": "facebook.com/nhanai.charity"
+    "facebook": "facebook.com"
   }
 
 ### 1.4. Quỹ Trái Tim Yêu Thương
@@ -64,7 +64,7 @@
 - founding_date: 2020-05-01
 - website: www.traitimyeuthuong.org.vn
 - social_links: {
-    "facebook": "facebook.com/traitimyeuthuong.charity"
+    "facebook": "facebook.com"
   }
 
 ### 1.5. Quỹ Mái Ấm Hạnh Phúc
@@ -80,7 +80,7 @@
 - founding_date: 2020-07-01
 - website: www.maiamhanhphuc.org.vn
 - social_links: {
-    "facebook": "facebook.com/maiamhanhphuc.charity"
+    "facebook": "facebook.com"
   }
 
 ### 1.6. Quỹ Ánh Sáng Cuộc Sống
@@ -96,7 +96,7 @@
 - founding_date: 2020-09-01
 - website: www.anhsangcuocsong.org.vn
 - social_links: {
-    "facebook": "facebook.com/anhsangcuocsong.charity"
+    "facebook": "facebook.com"
   }
 
 ## 2. Charities đang chờ xác thực (2)
@@ -113,7 +113,7 @@
 - founding_date: 2023-05-01
 - website: www.maiamtinhthuong.org.vn
 - social_links: {
-    "facebook": "facebook.com/maiam.charity"
+    "facebook": "facebook.com"
   }
 
 ### 2.2. Quỹ Giáo Dục Vì Tương Lai
@@ -129,7 +129,7 @@
 - founding_date: 2023-06-01
 - website: www.tuonglai.org.vn
 - social_links: {
-    "facebook": "facebook.com/tuonglai.edu"
+    "facebook": "facebook.com"
   }
 
 ## 3. Charities bị từ chối xác thực (2)
@@ -146,7 +146,7 @@
 - founding_date: 2023-09-01
 - website: www.tuonglaixanh.org.vn
 - social_links: {
-    "facebook": "facebook.com/tuonglaixanh"
+    "facebook": "facebook.com"
   }
 
 ### 3.2. Quỹ Hỗ Trợ Giáo Dục
@@ -162,5 +162,5 @@
 - founding_date: 2023-10-01
 - website: www.hotrogiaoduc.org.vn
 - social_links: {
-    "facebook": "facebook.com/hotrogiaoduc"
+    "facebook": "facebook.com"
   }
