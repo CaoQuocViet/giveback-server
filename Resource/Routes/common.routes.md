@@ -9,7 +9,7 @@
 
 ## Routes
 
-### GET /api/administrative/provinces
+### GET /api/administrative/provinces -- DONE
 Lấy danh sách tỉnh/thành phố
 
 Response Success:
@@ -24,7 +24,7 @@ Response Success:
   }]
 }
 
-### GET /api/administrative/districts/:province
+### GET /api/administrative/districts/:province -- DONE
 Lấy danh sách quận/huyện của tỉnh/thành phố
 
 Parameters:
@@ -42,7 +42,7 @@ Response Success:
   }]
 }
 
-### GET /api/administrative/wards/:province/:district
+### GET /api/administrative/wards/:province/:district -- DONE
 Lấy danh sách phường/xã của quận/huyện
 
 Parameters:

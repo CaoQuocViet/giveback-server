@@ -41,7 +41,7 @@ Response Success:
   }
 }
 
-### POST /api/auth/login
+### POST /api/auth/login -- DONE
 Đăng nhập
 
 Request Body:
@@ -69,7 +69,7 @@ Response Success:
   }
 }
 
-### POST /api/auth/logout
+### POST /api/auth/logout -- DONE
 Đăng xuất
 
 Headers:
