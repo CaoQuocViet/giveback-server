@@ -250,7 +250,7 @@
 ### 4.1. Charities đã xác thực (6)
 - ID: charity_act1
 - Họ tên: Nguyễn Thị Phương (Đại diện)
-- Email: thiphuong@giveback.cha
+- Email: anhduong@giveback.cha
 - SĐT: 0900000016
 - Mật khẩu: 123456789000
 - Role: CHARITY
@@ -282,7 +282,7 @@
 
 - ID: charity_act3
 - Họ tên: Lê Thị Hoa (Đại diện)
-- Email: tinhthuong@giveback.cha
+- Email: nhanai@giveback.cha
 - SĐT: 0900000018
 - Mật khẩu: 123456789000
 - Role: CHARITY
@@ -328,14 +328,14 @@
 - Updated At: 2024-01-24T00:00:00Z
 - Phone Verified At: 2024-01-24T00:00:00Z
 
-- ID: charity_inac1
+- ID: charity_act6
 - Họ tên: Lê Thị Hoa (Đại diện)
-- Email: tinhthuong2@giveback.cha
+- Email: anhsang@giveback.cha
 - SĐT: 0900000021
 - Mật khẩu: 123456789000
 - Role: CHARITY
 - OTP verified: true
-- Profile image: charity_inac1.jpg
+- Profile image: charity_act6.jpg
 - Tỉnh/TP: Hồ Chí Minh
 - Quận/Huyện: Quận 3
 - Phường/Xã: Phường 3
@@ -345,9 +345,9 @@
 - Phone Verified At: 2024-01-22T00:00:00Z
 
 ### 4.3. Charities đang chờ xác thực (2)
-- ID: charity_inac2
+- ID: charity_pen1
 - Họ tên: Nguyễn Văn Minh (Đại diện)
-- Email: vanminh3@giveback.cha
+- Email: maiamtt@giveback.cha
 - SĐT: 0900000022
 - Mật khẩu: 123456789000
 - Role: CHARITY
@@ -361,9 +361,9 @@
 - Updated At: 2024-01-23T00:00:00Z
 - Phone Verified At: 2024-01-23T00:00:00Z
 
-- ID: charity_pen1
+- ID: charity_pen2
 - Họ tên: Hoàng Thị Mai (Đại diện)
-- Email: maiam2@giveback.cha
+- Email: vituonglai@giveback.cha
 - SĐT: 0900000023
 - Mật khẩu: 123456789000
 - Role: CHARITY

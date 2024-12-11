@@ -1,7 +1,6 @@
 'use strict';
 
 const { Model, DataTypes } = require('sequelize');
-const { CampaignStatus } = require('./types');
 
 module.exports = (sequelize) => {
   class Campaign extends Model {
@@ -57,7 +56,7 @@ module.exports = (sequelize) => {
       field: 'detail_goal'
     },
     status: {
-      type: '"CampaignStatus"',
+      type: DataTypes.ENUM('STARTING', 'ONGOING', 'CLOSED', 'COMPLETED'),
       allowNull: false,
       defaultValue: 'STARTING'
     },
@@ -102,6 +101,8 @@ module.exports = (sequelize) => {
     modelName: 'Campaign',
     tableName: 'Campaigns',
     timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
     underscored: true
   });
 

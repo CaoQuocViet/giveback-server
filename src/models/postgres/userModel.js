@@ -60,7 +60,7 @@ export default (sequelize) => {
       allowNull: false
     },
     role: {
-      type: '"Role"',
+      type: DataTypes.ENUM('ADMIN', 'DONOR', 'CHARITY', 'BENEFICIARY'),
       allowNull: false
     },
     profileImage: {

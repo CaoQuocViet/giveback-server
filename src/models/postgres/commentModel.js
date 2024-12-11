@@ -56,7 +56,7 @@ module.exports = (sequelize) => {
       }
     },
     role: {
-      type: '"Role"',
+      type: DataTypes.ENUM('ADMIN', 'DONOR', 'CHARITY', 'BENEFICIARY'),
       allowNull: false
     }
   }, {

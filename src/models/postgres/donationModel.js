@@ -81,7 +81,7 @@ module.exports = (sequelize) => {
       field: 'is_anonymous'
     },
     status: {
-      type: '"PaymentStatus"',
+      type: DataTypes.ENUM('PENDING', 'SUCCESS', 'FAILED'),
       allowNull: false,
       defaultValue: 'PENDING'
     },
@@ -95,6 +95,8 @@ module.exports = (sequelize) => {
     modelName: 'Donation',
     tableName: 'Donations',
     timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
     underscored: true
   });
 

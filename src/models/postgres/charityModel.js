@@ -56,7 +56,7 @@ module.exports = (sequelize) => {
       field: 'license_issuer'
     },
     verificationStatus: {
-      type: '"VerificationStatus"',
+      type: DataTypes.ENUM('PENDING', 'VERIFIED', 'REJECTED'),
       allowNull: false,
       defaultValue: 'PENDING',
       field: 'verification_status'
@@ -122,6 +122,8 @@ module.exports = (sequelize) => {
     modelName: 'Charity',
     tableName: 'Charities',
     timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
     underscored: true
   });
 
