@@ -1,7 +1,6 @@
-import { Model, DataTypes } from 'sequelize';
-const { Role } = require('./types');
+const { Model, DataTypes } = require('sequelize');
 
-export default (sequelize) => {
+module.exports = (sequelize) => {
   class User extends Model {
     static associate(models) {
       User.hasOne(models.Charity, {

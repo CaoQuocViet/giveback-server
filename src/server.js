@@ -4,7 +4,8 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const compression = require("compression");
 const administrativeRoutes = require("./routes/administrative.routes");
-const authRoutes = require("./routes/authRoutes");
+const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/user');
 
 const app = express();
 app.use(express.json());
@@ -25,7 +26,8 @@ app.get("/", (req, res) => {
 
 // Thêm route administrative
 app.use("/api/administrative", administrativeRoutes);
-app.use("/api/auth", authRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
 
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`);
