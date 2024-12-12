@@ -1,0 +1,411 @@
+# Users Data
+
+## 1. System Admin (1)
+- ID: admin_001
+- Họ tên: Nguyễn Quản Trị
+- Email: admin@giveback
+- SĐT: 0900000001
+- Mật khẩu: 123456789000
+- Role: ADMIN
+- OTP verified: true
+- Profile image: admin_avatar.jpg
+- Tỉnh/TP: Hồ Chí Minh
+- Quận/Huyện: Quận 1
+- Phường/Xã: Phường Bến Nghé
+- Địa chỉ: 123 Đường Lê Lợi
+- Created At: 2024-01-01T00:00:00Z
+- Updated At: 2024-01-01T00:00:00Z
+- Phone Verified At: 2024-01-01T00:00:00Z
+
+## 2. Donors (10)
+### 2.1. Donors với đóng góp công khai
+- ID: donor_001
+- Họ tên: Trần Bảo An
+- Email: baoan@giveback.don
+- SĐT: 0900000002
+- Mật khẩu: 123456789000
+- Role: DONOR
+- OTP verified: true
+- Profile image: donor_001.jpg
+- Tỉnh/TP: Hồ Chí Minh
+- Quận/Huyện: Quận 1
+- Phường/Xã: Phường Cầu Ông Lãnh
+- Địa chỉ: 45 Đường Trần Hưng Đạo
+- Created At: 2024-01-02T00:00:00Z
+- Updated At: 2024-01-02T00:00:00Z
+- Phone Verified At: 2024-01-02T00:00:00Z
+
+- ID: donor_002
+- Họ tên: Lê Minh Tâm
+- Email: minhtam@giveback.don
+- SĐT: 0900000003
+- Mật khẩu: 123456789000
+- Role: DONOR
+- OTP verified: true
+- Profile image: donor_002.jpg
+- Tỉnh/TP: Hồ Chí Minh
+- Quận/Huyện: Quận 1
+- Phường/Xã: Phường Bến Nghé
+- Địa chỉ: 67 Đường Nguyễn Huệ
+- Created At: 2024-01-03T00:00:00Z
+- Updated At: 2024-01-03T00:00:00Z
+- Phone Verified At: 2024-01-03T00:00:00Z
+
+- ID: donor_003
+- Họ tên: Phạm Thanh Hà
+- Email: thanhha@giveback.don
+- SĐT: 0900000004
+- Mật khẩu: 123456789000
+- Role: DONOR
+- OTP verified: true
+- Profile image: donor_003.jpg
+- Tỉnh/TP: Hồ Chí Minh
+- Quận/Huyện: Quận 1
+- Phường/Xã: Phường Bến Thành
+- Địa chỉ: 89 Đường Lý Tự Trọng
+- Created At: 2024-01-04T00:00:00Z
+- Updated At: 2024-01-04T00:00:00Z
+- Phone Verified At: 2024-01-04T00:00:00Z
+
+- ID: donor_004
+- Họ tên: Nguyễn Thị Hạnh
+- Email: thihanh@giveback.don
+- SĐT: 0900000005
+- Mật khẩu: 123456789000
+- Role: DONOR
+- OTP verified: true
+- Profile image: donor_004.jpg
+- Tỉnh/TP: Hồ Chí Minh
+- Quận/Huyện: Quận 1
+- Phường/Xã: Phường Bến Thành
+- Địa chỉ: 91 Đường Nguyễn Du
+- Created At: 2024-01-05T00:00:00Z
+- Updated At: 2024-01-05T00:00:00Z
+- Phone Verified At: 2024-01-05T00:00:00Z
+
+- ID: donor_005
+- Họ tên: Lý Văn Phúc
+- Email: vanphuc@giveback.don
+- SĐT: 0900000006
+- Mật khẩu: 123456789000
+- Role: DONOR
+- OTP verified: true
+- Profile image: donor_005.jpg
+- Tỉnh/TP: Hồ Chí Minh
+- Quận/Huyện: Quận 1
+- Phường/Xã: Phường Bến Thành
+- Địa chỉ: 92 Đường Pasteur
+- Created At: 2024-01-06T00:00:00Z
+- Updated At: 2024-01-06T00:00:00Z
+- Phone Verified At: 2024-01-06T00:00:00Z
+
+- ID: donor_006
+- Họ tên: Trịnh Minh Anh
+- Email: minhanh@giveback.don
+- SĐT: 0900000007
+- Mật khẩu: 123456789000
+- Role: DONOR
+- OTP verified: true
+- Profile image: donor_006.jpg
+- Tỉnh/TP: Hồ Chí Minh
+- Quận/Huyện: Quận 1
+- Phường/Xã: Phường Bến Thành
+- Địa chỉ: 93 Đường Mạc Thị Bưởi
+- Created At: 2024-01-07T00:00:00Z
+- Updated At: 2024-01-07T00:00:00Z
+- Phone Verified At: 2024-01-07T00:00:00Z
+
+### 2.2. Donors với đóng góp ẩn danh
+- ID: donor_007
+- Họ tên: Hoàng Minh Đức
+- Email: minhduc@giveback.don
+- SĐT: 0900000008
+- Mật khẩu: 123456789000
+- Role: DONOR
+- OTP verified: true
+- Profile image: donor_007.jpg
+- Tỉnh/TP: Hồ Chí Minh
+- Quận/Huyện: Quận 3
+- Phường/Xã: Phường 6
+- Địa chỉ: 234 Đường Cách Mạng Tháng 8
+- Created At: 2024-01-08T00:00:00Z
+- Updated At: 2024-01-08T00:00:00Z
+- Phone Verified At: 2024-01-08T00:00:00Z
+
+- ID: donor_008
+- Họ tên: Vũ Thị Mai
+- Email: vumai@giveback.don
+- SĐT: 0900000009
+- Mật khẩu: 123456789000
+- Role: DONOR
+- OTP verified: true
+- Profile image: donor_008.jpg
+- Tỉnh/TP: Hồ Chí Minh
+- Quận/Huyện: Quận 3
+- Phường/Xã: Phường 6
+- Địa chỉ: 56 Đường Võ Văn Tần
+- Created At: 2024-01-09T00:00:00Z
+- Updated At: 2024-01-09T00:00:00Z
+- Phone Verified At: 2024-01-09T00:00:00Z
+
+### 2.3. Donor chưa có đóng góp
+- ID: donor_009
+- Họ tên: Đặng Minh Quân
+- Email: minhquan@giveback.don
+- SĐT: 0900000010
+- Mật khẩu: 123456789000
+- Role: DONOR
+- OTP verified: true
+- Profile image: donor_009.jpg
+- Tỉnh/TP: Hồ Chí Minh
+- Quận/Huyện: Quận 3
+- Phường/Xã: Phường 8
+- Địa chỉ: 78 Đường Nam Kỳ Khởi Nghĩa
+- Created At: 2024-01-10T00:00:00Z
+- Updated At: 2024-01-10T00:00:00Z
+- Phone Verified At: 2024-01-10T00:00:00Z
+
+- ID: donor_010
+- Họ tên: Bùi Thị Ngọc
+- Email: buingoc@giveback.don
+- SĐT: 0900000011
+- Mật khẩu: 123456789000
+- Role: DONOR
+- OTP verified: true
+- Profile image: donor_010.jpg
+- Tỉnh/TP: Hồ Chí Minh
+- Quận/Huyện: Quận 1
+- Phường/Xã: Phường Đa Kao
+- Địa chỉ: 90 Đường Điện Biên Phủ
+- Created At: 2024-01-11T00:00:00Z
+- Updated At: 2024-01-11T00:00:00Z
+- Phone Verified At: 2024-01-11T00:00:00Z
+
+## 3. Beneficiaries (4)
+- ID: ben_001
+- Họ tên: Nguyễn Văn Hùng
+- Email: vanhung@giveback.ben
+- SĐT: 0900000012
+- Mật khẩu: 123456789000
+- Role: BENEFICIARY
+- OTP verified: true
+- Profile image: ben_001.jpg
+- Tỉnh/TP: Lào Cai
+- Quận/Huyện: Huyện Sa Pa
+- Phường/Xã: Xã Tả Van
+- Địa chỉ: Thôn Sín Chải A
+- Created At: 2024-01-15T00:00:00Z
+- Updated At: 2024-01-15T00:00:00Z
+- Phone Verified At: 2024-01-15T00:00:00Z
+
+- ID: ben_002
+- Họ tên: Trần Thị Hiền
+- Email: thihien@giveback.ben
+- SĐT: 0900000013
+- Mật khẩu: 123456789000
+- Role: BENEFICIARY
+- OTP verified: true
+- Profile image: ben_002.jpg
+- Tỉnh/TP: Lào Cai
+- Quận/Huyện: Huyện Sa Pa
+- Phường/Xã: Xã Tả Van
+- Địa chỉ: Thôn Sín Chải B
+- Created At: 2024-01-16T00:00:00Z
+- Updated At: 2024-01-16T00:00:00Z
+- Phone Verified At: 2024-01-16T00:00:00Z
+
+- ID: ben_003
+- Họ tên: Lê Văn Nam
+- Email: vannam@giveback.ben
+- SĐT: 0900000014
+- Mật khẩu: 123456789000
+- Role: BENEFICIARY
+- OTP verified: true
+- Profile image: ben_003.jpg
+- Tỉnh/TP: Lai Châu
+- Quận/Huyện: Huyện Nậm Nhùn
+- Phường/Xã: Xã Nậm Nhùn
+- Địa chỉ: Bản Nậm Lúc
+- Created At: 2024-01-17T00:00:00Z
+- Updated At: 2024-01-17T00:00:00Z
+- Phone Verified At: 2024-01-17T00:00:00Z
+
+- ID: ben_004
+- Họ tên: Nguyễn Thị Thắm
+- Email: thitham@giveback.ben
+- SĐT: 0900000015
+- Mật khẩu: 123456789000
+- Role: BENEFICIARY
+- OTP verified: true
+- Profile image: ben_004.jpg
+- Tỉnh/TP: Lai Châu
+- Quận/Huyện: Huyện Nậm Nhùn
+- Phường/Xã: Xã Nậm Nhùn
+- Địa chỉ: Bản Nậm Lúc
+- Created At: 2024-01-18T00:00:00Z
+- Updated At: 2024-01-18T00:00:00Z
+- Phone Verified At: 2024-01-18T00:00:00Z
+
+## 4. Charities (10)
+### 4.1. Charities đã xác thực (6)
+- ID: charity_act1
+- Họ tên: Nguyễn Thị Phương (Đại diện)
+- Email: anhduong@giveback.cha
+- SĐT: 0900000016
+- Mật khẩu: 123456789000
+- Role: CHARITY
+- OTP verified: true
+- Profile image: charity_act1.jpg
+- Tỉnh/TP: Hồ Chí Minh
+- Quận/Huyện: Quận 3
+- Phường/Xã: Phường 1
+- Địa chỉ: 123 Đường Điện Biên Phủ
+- Created At: 2024-01-20T00:00:00Z
+- Updated At: 2024-01-20T00:00:00Z
+- Phone Verified At: 2024-01-20T00:00:00Z
+
+- ID: charity_act2
+- Họ tên: Trần Văn Đức (Đại diện)
+- Email: hyvong@giveback.cha
+- SĐT: 0900000017
+- Mật khẩu: 123456789000
+- Role: CHARITY
+- OTP verified: true
+- Profile image: charity_act2.jpg
+- Tỉnh/TP: Hồ Chí Minh
+- Quận/Huyện: Quận 3
+- Phường/Xã: Phường 7
+- Địa chỉ: 78 Đường Võ Thị Sáu
+- Created At: 2024-01-21T00:00:00Z
+- Updated At: 2024-01-21T00:00:00Z
+- Phone Verified At: 2024-01-21T00:00:00Z
+
+- ID: charity_act3
+- Họ tên: Lê Thị Hoa (Đại diện)
+- Email: nhanai@giveback.cha
+- SĐT: 0900000018
+- Mật khẩu: 123456789000
+- Role: CHARITY
+- OTP verified: true
+- Profile image: charity_act3.jpg
+- Tỉnh/TP: Hồ Chí Minh
+- Quận/Huyện: Quận 3
+- Phường/Xã: Phường 7
+- Địa chỉ: 90 Đường Bà Huyện Thanh Quan
+- Created At: 2024-01-22T00:00:00Z
+- Updated At: 2024-01-22T00:00:00Z
+- Phone Verified At: 2024-01-22T00:00:00Z
+
+- ID: charity_act4
+- Họ tên: Phạm Văn Tuấn (Đại diện)
+- Email: traitim@giveback.cha
+- SĐT: 0900000019
+- Mật khẩu: 123456789000
+- Role: CHARITY
+- OTP verified: true
+- Profile image: charity_act4.jpg
+- Tỉnh/TP: Hồ Chí Minh
+- Quận/Huyện: Quận 3
+- Phường/Xã: Phường 7
+- Địa chỉ: 123 Đường Trần Quốc Thảo
+- Created At: 2024-01-23T00:00:00Z
+- Updated At: 2024-01-23T00:00:00Z
+- Phone Verified At: 2024-01-23T00:00:00Z
+
+- ID: charity_act5
+- Họ tên: Hoàng Thị Thảo (Đại diện)
+- Email: maiam@giveback.cha
+- SĐT: 0900000020
+- Mật khẩu: 123456789000
+- Role: CHARITY
+- OTP verified: true
+- Profile image: charity_act5.jpg
+- Tỉnh/TP: Hồ Chí Minh
+- Quận/Huyện: Quận 3
+- Phường/Xã: Phường 5
+- Địa chỉ: 45 Đường Nguyễn Đình Chiểu
+- Created At: 2024-01-24T00:00:00Z
+- Updated At: 2024-01-24T00:00:00Z
+- Phone Verified At: 2024-01-24T00:00:00Z
+
+- ID: charity_act6
+- Họ tên: Lê Thị Hoa (Đại diện)
+- Email: anhsang@giveback.cha
+- SĐT: 0900000021
+- Mật khẩu: 123456789000
+- Role: CHARITY
+- OTP verified: true
+- Profile image: charity_act6.jpg
+- Tỉnh/TP: Hồ Chí Minh
+- Quận/Huyện: Quận 3
+- Phường/Xã: Phường 3
+- Địa chỉ: 67 Đường Trần Quốc Thảo
+- Created At: 2024-01-22T00:00:00Z
+- Updated At: 2024-01-22T00:00:00Z
+- Phone Verified At: 2024-01-22T00:00:00Z
+
+### 4.3. Charities đang chờ xác thực (2)
+- ID: charity_pen1
+- Họ tên: Nguyễn Văn Minh (Đại diện)
+- Email: maiamtt@giveback.cha
+- SĐT: 0900000022
+- Mật khẩu: 123456789000
+- Role: CHARITY
+- OTP verified: true
+- Profile image: charity_inac2.jpg
+- Tỉnh/TP: Hồ Chí Minh
+- Quận/Huyện: Quận 3
+- Phường/Xã: Phường 4
+- Địa chỉ: 123 Đường Trần Quốc Thảo
+- Created At: 2024-01-23T00:00:00Z
+- Updated At: 2024-01-23T00:00:00Z
+- Phone Verified At: 2024-01-23T00:00:00Z
+
+- ID: charity_pen2
+- Họ tên: Hoàng Thị Mai (Đại diện)
+- Email: vituonglai@giveback.cha
+- SĐT: 0900000023
+- Mật khẩu: 123456789000
+- Role: CHARITY
+- OTP verified: true
+- Profile image: charity_pen1.jpg
+- Tỉnh/TP: Hồ Chí Minh
+- Quận/Huyện: Quận 3
+- Phường/Xã: Phường 5
+- Địa chỉ: 45 Đường Nguyễn Đình Chiểu
+- Created At: 2024-01-24T00:00:00Z
+- Updated At: 2024-01-24T00:00:00Z
+- Phone Verified At: 2024-01-24T00:00:00Z
+
+### 4.4. Charities bị từ chối xác thực (2)
+- ID: charity_rej1
+- Họ tên: Đặng Thị Xuân (Đại diện)
+- Email: tuonglaixanh@giveback.cha
+- SĐT: 0900000024
+- Mật khẩu: 123456789000
+- Role: CHARITY
+- OTP verified: true
+- Profile image: charity_rej1.jpg
+- Tỉnh/TP: Hồ Chí Minh
+- Quận/Huyện: Quận 3
+- Phường/Xã: Phường 6
+- Địa chỉ: 67 Đường Trần Quốc Thảo
+- Created At: 2024-01-25T00:00:00Z
+- Updated At: 2024-01-25T00:00:00Z
+- Phone Verified At: 2024-01-25T00:00:00Z
+
+- ID: charity_rej2
+- Họ tên: Lê Văn Hòa (Đại diện)
+- Email: hotrogiaoduc@giveback.cha
+- SĐT: 0900000025
+- Mật khẩu: 123456789000
+- Role: CHARITY
+- OTP verified: true
+- Profile image: charity_rej2.jpg
+- Tỉnh/TP: Hồ Chí Minh
+- Quận/Huyện: Quận 3
+- Phường/Xã: Phường 6
+- Địa chỉ: 67 Đường Trần Quốc Thảo
+- Created At: 2024-01-26T00:00:00Z
+- Updated At: 2024-01-26T00:00:00Z
+- Phone Verified At: 2024-01-26T00:00:00Z
