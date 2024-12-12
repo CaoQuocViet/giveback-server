@@ -9,7 +9,7 @@ const userRoutes = require("./routes/user");
 const statisticsRoutes = require("./routes/statistics.routes");
 const charitiesRoutes = require("./routes/charities.routes");
 const reportsRoutes = require("./routes/reports.routes");
-
+const campaignRoutes = require('./routes/campaigns.route');
 const app = express();
 app.use(express.json());
 app.use(
@@ -36,6 +36,8 @@ app.use("/api/users", userRoutes);
 app.use("/api/statistics", statisticsRoutes);
 app.use("/api/charities", charitiesRoutes);
 app.use("/api/reports", reportsRoutes);
+app.use('/api/campaigns', campaignRoutes);
+
 
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`);
