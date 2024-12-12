@@ -6,6 +6,9 @@ const compression = require("compression");
 const administrativeRoutes = require("./routes/administrative.routes");
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
+const statisticsRoutes = require('./routes/statistics.routes');
+const charityRoutes = require('./routes/charities.routes');
+const campaignRoutes = require('./routes/campaigns.route');
 
 const app = express();
 app.use(express.json());
@@ -28,6 +31,9 @@ app.get("/", (req, res) => {
 app.use("/api/administrative", administrativeRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/statistics', statisticsRoutes);
+app.use('/api/charities', charityRoutes);
+app.use('/api/campaigns', campaignRoutes);
 
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`);
