@@ -2,7 +2,6 @@
 GET /api/admin/profile
 PUT /api/admin/profile
 PUT /api/admin/change-password
-PUT /api/admin/avatar
 
 # API Quản lý Tổ chức từ thiện:
 GET /api/admin/charities - Danh sách tổ chức
