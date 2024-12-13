@@ -3,23 +3,34 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+    // Thêm dữ liệu cho bảng PaymentMethods
+    await queryInterface.bulkInsert('PaymentMethods', [
+      {
+        id: 'payment_method_1',
+        name: 'ZALOPAY',
+        transaction_code: 'ZALOPAY_001',
+        created_at: new Date(),
+        updated_at: new Date()
+      },
+      {
+        id: 'payment_method_2',
+        name: 'VNPAY',
+        transaction_code: 'VNPAY_001',
+        created_at: new Date(),
+        updated_at: new Date()
+      },
+      {
+        id: 'payment_method_3',
+        name: 'MOMO',
+        transaction_code: 'MOMO_001',
+        created_at: new Date(),
+        updated_at: new Date()
+      }
+    ], {});
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    // Xóa dữ liệu trong bảng PaymentMethods
+    await queryInterface.bulkDelete('PaymentMethods', null, {});
   }
 };
