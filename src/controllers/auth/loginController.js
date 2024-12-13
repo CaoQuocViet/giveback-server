@@ -17,8 +17,9 @@ const login = async (req, res) => {
 				"email",
 				"phone",
 				"password",
-				"full_name",
+				"fullName",
 				"role",
+				"profileImage",
 				["otp_verified", "otpVerified"],
 			],
 		});
@@ -72,8 +73,9 @@ const login = async (req, res) => {
 					id: user.id,
 					email: user.email,
 					phone: user.phone,
-					full_name: user.full_name,
+					fullName: user.fullName,
 					role: user.role,
+					profileImage: user.profileImage,
 				},
 			},
 		});

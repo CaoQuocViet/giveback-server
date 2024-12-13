@@ -18,7 +18,7 @@ exports.getCampaignReport = async () => {
 				sequelize.literal(`(
           SELECT COALESCE(SUM("Donations"."amount"), 0)
           FROM "Donations"
-          WHERE "Donations"."campaign_id" = "Campaign"."id"
+          WHERE campaign_id = "Campaign"."id"
         )`),
 				"totalReceived",
 			],
