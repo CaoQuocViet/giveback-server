@@ -52,8 +52,7 @@ const createCommentController = async (req, res) => {
 			userId,
 			content,
 			rating,
-			role,
-			createdAt,
+			role
 		);
 
 		// Fetch the newly created comment with user details
