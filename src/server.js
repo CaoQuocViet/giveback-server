@@ -10,11 +10,13 @@ const statisticsRoutes = require("./routes/statistics.routes");
 const charitiesRoutes = require("./routes/charities.routes");
 const reportsRoutes = require("./routes/reports.routes");
 const campaignRoutes = require('./routes/campaigns.route');
+const campaignDetailRoute = require('./routes/campaign.detail.route');
+
 const app = express();
 app.use(express.json());
 app.use(
 	cors({
-		origin: "http://localhost:3000",
+		origin: process.env.FRONTEND_URL || "http://localhost:3000",
 		methods: ["GET", "POST", "PUT", "DELETE"],
 		credentials: true,
 	}),
@@ -29,7 +31,7 @@ app.get("/", (req, res) => {
 	res.send("Server is running");
 });
 
-// Thêm route administrative
+// Thêm route
 app.use("/api/administrative", administrativeRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
@@ -37,7 +39,7 @@ app.use("/api/statistics", statisticsRoutes);
 app.use("/api/charities", charitiesRoutes);
 app.use("/api/reports", reportsRoutes);
 app.use('/api/campaigns', campaignRoutes);
-
+app.use('/api/campaigns/detail', campaignDetailRoute);
 
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`);
