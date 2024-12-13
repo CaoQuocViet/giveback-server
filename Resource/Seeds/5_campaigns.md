@@ -21,6 +21,66 @@
 - address: Thôn 3, Xã Tam Thanh
 - images: flood_relief.jpg
 
+### 1.2. Hỗ trợ khẩn cấp miền Trung
+- ID: campaign_act1_2
+- charity_id: charity_act1
+- title: Hỗ trợ khẩn cấp miền Trung
+- description: Cung cấp thực phẩm và nước sạch cho 150 hộ dân bị ảnh hưởng bởi thiên tai.
+- detail_goal: |
+    Mục tiêu: Cung cấp thực phẩm và nước sạch cho 150 hộ dân
+    Đối tượng: 150 hộ dân bị ảnh hưởng
+    Thực hiện: Phối hợp với các tổ chức địa phương
+    Phân bổ: Thực phẩm (60%), Nước sạch (30%), Quản lý (10%)
+- status: STARTING
+- target_amount: 300000000
+- start_date: 2024-03-10T00:00:00Z
+- end_date: 2024-05-10T00:00:00Z
+- province: Quảng Nam
+- district: Huyện Đại Lộc
+- ward: Xã Đại Hòa
+- address: Thôn 1, Xã Đại Hòa
+- images: emergency_aid.jpg
+
+### 1.3. Tái thiết nhà cửa cho người dân
+- ID: campaign_act1_3
+- charity_id: charity_act1
+- title: Tái thiết nhà cửa cho người dân
+- description: Hỗ trợ xây dựng lại nhà cho 100 hộ dân bị thiệt hại nặng nề.
+- detail_goal: |
+    Mục tiêu: Xây dựng lại nhà cho 100 hộ dân
+    Đối tượng: 100 hộ dân bị thiệt hại nặng
+    Thực hiện: Phối hợp với các nhà thầu xây dựng
+    Phân bổ: Xây dựng (80%), Quản lý (20%)
+- status: COMPLETED
+- target_amount: 1000000000
+- start_date: 2023-12-01T00:00:00Z
+- end_date: 2024-01-01T00:00:00Z
+- province: Quảng Nam
+- district: Huyện Duy Xuyên
+- ward: Xã Duy Nghĩa
+- address: Thôn 2, Xã Duy Nghĩa
+- images: reconstruction.jpg
+
+### 1.4. Hỗ trợ người dân sau bão
+- ID: campaign_act1_4
+- charity_id: charity_act1
+- title: Hỗ trợ người dân sau bão
+- description: Cung cấp nhu yếu phẩm cho 200 hộ dân sau bão.
+- detail_goal: |
+    Mục tiêu: Cung cấp nhu yếu phẩm cho 200 hộ dân
+    Đối tượng: 200 hộ dân bị ảnh hưởng
+    Thực hiện: Phối hợp với các tổ chức từ thiện
+    Phân bổ: Nhu yếu phẩm (70%), Quản lý (30%)
+- status: CLOSED
+- target_amount: 400000000
+- start_date: 2023-11-01T00:00:00Z
+- end_date: 2023-12-01T00:00:00Z
+- province: Quảng Nam
+- district: Huyện Thăng Bình
+- ward: Xã Bình Dương
+- address: Thôn 3, Xã Bình Dương
+- images: post_storm_aid.jpg
+
 ## 2. Chiến dịch của Quỹ Hy Vọng Xanh
 ### 2.1. Khắc phục hạn hán miền Tây
 - ID: campaign_act2_1
