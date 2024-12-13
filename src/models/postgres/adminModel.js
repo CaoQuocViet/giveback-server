@@ -5,9 +5,8 @@ const { Model, DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   class Admin extends Model {
     static associate(models) {
-      // Quan hệ với User (1-1)
       Admin.belongsTo(models.User, {
-        foreignKey: 'id',
+        foreignKey: 'user_id',
         as: 'user'
       });
     }
@@ -15,8 +14,13 @@ module.exports = (sequelize) => {
 
   Admin.init({
     id: {
-      type: DataTypes.STRING,
-      primaryKey: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true
+    },
+    user_id: {
+      type: DataTypes.UUID,
+      allowNull: false,
       references: {
         model: 'Users',
         key: 'id'
@@ -24,7 +28,6 @@ module.exports = (sequelize) => {
     },
     isSystemAdmin: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
       defaultValue: false,
       field: 'is_system_admin'
     }
@@ -32,7 +35,8 @@ module.exports = (sequelize) => {
     sequelize,
     modelName: 'Admin',
     tableName: 'Admins',
-    timestamps: false
+    timestamps: true,
+    underscored: true
   });
 
   return Admin;

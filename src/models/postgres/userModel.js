@@ -24,6 +24,10 @@ module.exports = (sequelize) => {
         foreignKey: 'user_id',
         as: 'passwordResets'
       });
+      User.hasOne(models.Admin, {
+        foreignKey: 'user_id',
+        as: 'admin'
+      });
     }
   }
 

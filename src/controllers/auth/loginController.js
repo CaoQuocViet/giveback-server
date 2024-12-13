@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const login = async (req, res) => {
 	try {
 		const { identifier, password, type } = req.body;
-		console.log("Login attempt:", { identifier, type }); // Debug
+		const baseUrl = `${req.protocol}://${req.get('host')}`;
 
 		const whereClause =
 			type === "email" ? { email: identifier } : { phone: identifier };
@@ -63,20 +63,22 @@ const login = async (req, res) => {
 			{ expiresIn: "24h" },
 		);
 
+		const userResponse = {
+			token: token,
+			id: user.id,
+			email: user.email,
+			phone: user.phone,
+			fullName: user.fullName,
+			role: user.role,
+			profileImage: user.profileImage ? `${baseUrl}/storage/${user.profileImage}` : null,
+		};
+
 		return res.status(200).json({
 			success: true,
 			message: "Đăng nhập thành công",
 			data: {
 				token,
-				user: {
-					token: token,
-					id: user.id,
-					email: user.email,
-					phone: user.phone,
-					fullName: user.fullName,
-					role: user.role,
-					profileImage: user.profileImage,
-				},
+				user: userResponse
 			},
 		});
 	} catch (error) {
