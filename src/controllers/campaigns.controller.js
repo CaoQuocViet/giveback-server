@@ -41,10 +41,10 @@ const getCampaignsList = async (req, res) => {
         'title',
         'description',
         'images',
-        'target_amount',
-        'current_amount',
-        'start_date',
-        'end_date',
+        'targetAmount',
+        'currentAmount',
+        'startDate',
+        'endDate',
         'status',
         'rating',
         'created_at'
@@ -58,7 +58,7 @@ const getCampaignsList = async (req, res) => {
           model: User,
           as: 'user',
           required: false,
-          attributes: ['full_name', 'profile_image']
+          attributes: ['fullName', 'profileImage']
         }]
       }],
       order: [['created_at', 'DESC']],
@@ -87,16 +87,16 @@ const getCampaignsList = async (req, res) => {
         title: campaign.title,
         description: campaign.description,
         campaign_image: campaign.images,
-        target_amount: parseFloat(campaign.target_amount) || 0,
-        current_amount: parseFloat(campaign.current_amount) || 0,
-        start_date: formatDate(campaign.start_date),
-        end_date: formatDate(campaign.end_date),
+        target_amount: parseFloat(campaign.targetAmount) || 0,
+        current_amount: parseFloat(campaign.currentAmount) || 0,
+        start_date: formatDate(campaign.startDate),
+        end_date: formatDate(campaign.endDate),
         status: campaign.status,
         rating: parseFloat(campaign.rating) || 0,
         created_at: formatDate(campaign.created_at),
         charity: campaign.charity ? {
           name: campaign.charity.title,
-          logo: campaign.charity.user?.profile_image
+          logo: campaign.charity.user?.profileImage
         } : null
       };
     });
