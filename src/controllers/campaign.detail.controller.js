@@ -4,6 +4,7 @@ const { sequelize } = require("../models");
 exports.getCampaignDetail = async (req, res) => {
 	try {
 		const { id } = req.params;
+		const baseUrl = `${req.protocol}://${req.get('host')}`;
 
 		const campaign = await Campaign.findOne({
 			where: { id },
@@ -23,14 +24,6 @@ exports.getCampaignDetail = async (req, res) => {
 				"ward",
 				"district",
 				"province",
-				[
-					sequelize.literal(`(
-            SELECT COALESCE(SUM("Distributions"."budget"), 9999999)
-            FROM "Distributions"
-            WHERE campaign_id = "Campaign"."id"
-          )`),
-					"total_distributed",
-				],
 			],
 			include: [
 				{
@@ -83,7 +76,12 @@ exports.getCampaignDetail = async (req, res) => {
 			});
 		}
 
-		// Transform data
+		// Calculate total_distributed from distributions
+		const total_distributed = campaign.distributions.reduce(
+			(sum, dist) => sum + (parseFloat(dist.budget) || 0), 
+			0
+		);
+
 		const transformedData = {
 			id: campaign.id,
 			title: campaign.title,
@@ -106,7 +104,7 @@ exports.getCampaignDetail = async (req, res) => {
 			budget: {
 				target: parseFloat(campaign.targetAmount),
 				current: parseFloat(campaign.currentAmount),
-				total_distributed: parseFloat(campaign.total_distributed),
+				total_distributed: total_distributed,
 			},
 			rating: parseFloat(campaign.rating),
 			description: campaign.description,
@@ -129,7 +127,7 @@ exports.getCampaignDetail = async (req, res) => {
 				user: {
 					name: comment.user.fullName,
 					role: comment.user.role,
-					avatar: comment.user.profileImage,
+					avatar: comment.user.profileImage ? `${baseUrl}/storage/${comment.user.profileImage}` : null,
 				},
 				content: comment.content,
 				rating: parseFloat(comment.rating),
