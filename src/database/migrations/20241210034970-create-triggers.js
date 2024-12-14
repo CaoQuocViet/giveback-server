@@ -58,7 +58,13 @@ module.exports = {
       CREATE OR REPLACE FUNCTION update_campaign_amount()
       RETURNS TRIGGER AS $$
       BEGIN
-        IF TG_OP = 'UPDATE' THEN
+        IF TG_OP = 'INSERT' THEN
+          IF NEW.status = 'SUCCESS' THEN
+            UPDATE "Campaigns"
+            SET current_amount = current_amount + NEW.amount
+            WHERE id = NEW.campaign_id;
+          END IF;
+        ELSIF TG_OP = 'UPDATE' THEN
           IF OLD.status = 'SUCCESS' AND NEW.status != 'SUCCESS' THEN
             UPDATE "Campaigns"
             SET current_amount = current_amount - OLD.amount
@@ -74,7 +80,7 @@ module.exports = {
       $$ LANGUAGE plpgsql;
 
       CREATE TRIGGER trg_update_campaign_amount
-      AFTER UPDATE OF status ON "Donations"
+      AFTER INSERT OR UPDATE OF status ON "Donations"
       FOR EACH ROW
       EXECUTE FUNCTION update_campaign_amount();
 
