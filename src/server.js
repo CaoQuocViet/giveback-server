@@ -20,7 +20,7 @@ const adminProfileRoutes = require('./routes/user/adminProfileRoutes');
 const beneficiaryProfileRoutes = require('./routes/user/beneficiaryProfileRoutes');
 const donorDonationHistoryRoutes = require('./routes/user/donorDonationHistoryRoutes');
 const resetPasswordRoutes = require('./routes/auth/resetPasswordRoutes');
-const charityRoutes = require('./routes/charity/campaignManagementRoutes');
+const charityRoutes = require('./routes/charity');
 
 const app = express();
 app.use(express.json());
@@ -62,7 +62,7 @@ app.use('/api/profile/admin', adminProfileRoutes);
 app.use('/api/profile/beneficiary', beneficiaryProfileRoutes);
 app.use('/api/donor/donations', donorDonationHistoryRoutes);
 app.use("/api/auth/reset-password", resetPasswordRoutes);
-app.use('/api/charity', charityRoutes);
+app.use('/api/charities', charityRoutes);
 
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`);
