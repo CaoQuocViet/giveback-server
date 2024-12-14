@@ -62,7 +62,7 @@ app.use('/api/profile/admin', adminProfileRoutes);
 app.use('/api/profile/beneficiary', beneficiaryProfileRoutes);
 app.use('/api/donor/donations', donorDonationHistoryRoutes);
 app.use("/api/auth/reset-password", resetPasswordRoutes);
-app.use('/api/charities', charityRoutes);
+app.use('/api/charity', charityRoutes);
 
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`);

@@ -10,7 +10,7 @@ const {
 router.use(authenticateToken);
 router.use(authorizeCharity);
 
-router.get('/campaigns', getCharityCampaigns);
-router.delete('/campaigns/:id', deleteCampaign);
+router.get('/', getCharityCampaigns);
+router.delete('/:id', deleteCampaign);
 
 module.exports = router; 

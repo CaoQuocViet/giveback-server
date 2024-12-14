@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const charityDetailRoutes = require('./charityDetailRoutes');
+const campaignManagementRoutes = require('./campaignManagementRoutes');
 
-router.use('/', charityDetailRoutes);
+router.use('/campaigns', campaignManagementRoutes);
 
 module.exports = router; 
