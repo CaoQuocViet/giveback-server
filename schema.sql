@@ -114,7 +114,7 @@ CREATE TABLE Campaigns (
 CREATE TABLE PaymentMethods (
   id varchar PRIMARY KEY,                    -- UUID v4
   name varchar NOT NULL,                     -- Tên phương thức thanh toán
-  transaction_code varchar NOT NULL UNIQUE   -- Mã giao dịch định danh
+  transaction_code varchar NOT NULL UNIQUE   -- Mã định danh cho loại phương thức thanh toán
 );
 
 CREATE TABLE Donations (

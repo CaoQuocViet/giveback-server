@@ -27,3 +27,9 @@ dist-ssr
 .env.local
 .env.development
 .env.production
+
+# Ignore image files in storage directory
+/src/storage/**/*.svg
+/src/storage/**/*.png
+/src/storage/**/*.jpeg
+/src/storage/**/*.jpg
