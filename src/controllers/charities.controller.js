@@ -80,6 +80,94 @@ class CharitiesController {
       });
     }
   }
+
+  async verifyCharity(req, res) {
+    try {
+      const { id } = req.params;
+      const { role } = req.user;
+
+      if (role !== 'ADMIN') {
+        return res.status(403).json({
+          success: false,
+          message: 'Không có quyền thực hiện thao tác này'
+        });
+      }
+      
+      const charity = await Charity.findByPk(id);
+      if (!charity) {
+        return res.status(404).json({
+          success: false,
+          message: 'Không tìm thấy tổ chức'
+        });
+      }
+
+      if (charity.verification_status === 'VERIFIED') {
+        return res.status(400).json({
+          success: false,
+          message: 'Tổ chức đã được xác thực'
+        });
+      }
+
+      await charity.update({ verification_status: 'VERIFIED' });
+      await charity.save();
+
+      return res.json({
+        success: true,
+        message: 'Đã xác thực tổ chức thành công'
+      });
+
+    } catch (error) {
+      console.error('Error verifying charity:', error);
+      return res.status(500).json({
+        success: false,
+        message: 'Lỗi khi xác thực tổ chức'
+      });
+    }
+  }
+
+  async rejectCharity(req, res) {
+    try {
+      const { id } = req.params;
+      const { role } = req.user;
+
+      if (role !== 'ADMIN') {
+        return res.status(403).json({
+          success: false,
+          message: 'Không có quyền thực hiện thao tác này'
+        });
+      }
+      
+      const charity = await Charity.findByPk(id);
+      if (!charity) {
+        return res.status(404).json({
+          success: false,
+          message: 'Không tìm thấy tổ chức'
+        });
+      }
+
+      if (charity.verification_status === 'REJECTED') {
+        return res.status(400).json({
+          success: false,
+          message: 'Tổ chức đã bị từ chối xác thực'
+        });
+      }
+
+      await charity.update({ verification_status: 'REJECTED' });
+      await charity.save();
+
+      return res.json({
+        success: true,
+        message: 'Đã từ chối xác thực tổ chức'
+      });
+
+    } catch (error) {
+      console.error('Error rejecting charity:', error);
+      return res.status(500).json({
+        success: false,
+        message: 'Lỗi khi từ chối xác thực tổ chức'
+      });
+    }
+  }
 }
 
 module.exports = new CharitiesController(); 

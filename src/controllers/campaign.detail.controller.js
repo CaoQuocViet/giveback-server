@@ -1,4 +1,4 @@
-const { Campaign, Charity, User, Distribution, Comment } = require("../models");
+const { Campaign, Charity, User, Distribution, Comment, Donation, PaymentMethod } = require("../models");
 const { sequelize } = require("../models");
 
 exports.getCampaignDetail = async (req, res) => {
@@ -66,13 +66,39 @@ exports.getCampaignDetail = async (req, res) => {
 						},
 					],
 				},
+				{
+					model: Donation,
+					as: "donations",
+					attributes: [
+						"id", 
+						"amount",
+						"note",
+						"invoice_code",
+						"payment_transaction_id",
+						"is_anonymous",
+						"status",
+						"created_at"
+					],
+					include: [
+						{
+							model: User,
+							as: "donor",
+							attributes: ["fullName", "role", "profileImage"]
+						},
+						{
+							model: PaymentMethod,
+							as: "paymentMethod",
+							attributes: ["name"]
+						}
+					]
+				}
 			],
 		});
 
 		if (!campaign) {
 			return res.status(404).json({
 				success: false,
-				message: "Không tìm thấy chiến dịch",
+					message: "Không tìm thấy chiến dịch",
 			});
 		}
 
@@ -131,8 +157,27 @@ exports.getCampaignDetail = async (req, res) => {
 				},
 				content: comment.content,
 				rating: parseFloat(comment.rating),
-				created_at: comment.createdAt,
+				created_at: comment.created_at,
 			})),
+			donations: campaign.donations.map(donation => ({
+				id: donation.id,
+				donor: donation.is_anonymous ? {
+					name: "Nhà hảo tâm ẩn danh",
+					role: "DONOR",
+					avatar: `${baseUrl}/storage/profile/system_donor_avatar.png` || null
+				} : {
+					name: donation.donor.fullName,
+					role: donation.donor.role,
+					avatar: donation.donor.profileImage ? `${baseUrl}/storage/${donation.donor.profileImage}` : null
+				},
+				amount: parseFloat(donation.amount),
+				message: donation.note,
+				payment_method: donation.paymentMethod.name,
+				invoice_code: donation.invoice_code || null,
+				transaction_id: donation.payment_transaction_id || null,
+				status: donation.status,
+				created_at: donation.created_at
+			}))
 		};
 
 		return res.json({

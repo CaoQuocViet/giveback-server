@@ -1,5 +1,5 @@
 const express = require("express");
-const cors = require("cors");
+const cors = require("./middlewares/cors");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const compression = require("compression");
@@ -23,14 +23,8 @@ const resetPasswordRoutes = require('./routes/auth/resetPasswordRoutes');
 const charityRoutes = require('./routes/charity');
 
 const app = express();
+app.use(cors);
 app.use(express.json());
-app.use(
-	cors({
-		origin: process.env.FRONTEND_URL || "http://localhost:3000",
-			methods: ["GET", "POST", "PUT", "DELETE"],
-			credentials: true,
-	}),
-);
 app.use(morgan("dev"));
 app.use(helmet({
 	crossOriginResourcePolicy: false
