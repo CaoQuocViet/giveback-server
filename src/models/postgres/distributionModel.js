@@ -10,12 +10,6 @@ module.exports = (sequelize) => {
 				foreignKey: "campaign_id",
 				as: "campaign",
 			});
-
-			// Quan hệ với User/Beneficiary (n-1)
-			Distribution.belongsTo(models.User, {
-				foreignKey: "beneficiary_id",
-				as: "beneficiary",
-			});
 		}
 	}
 

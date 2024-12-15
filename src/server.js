@@ -23,6 +23,7 @@ const donorDonationHistoryRoutes = require('./routes/user/donorDonationHistoryRo
 const resetPasswordRoutes = require('./routes/auth/resetPasswordRoutes');
 const charityRoutes = require('./routes/charity');
 const systemDonorRoutes = require('./routes/system.donor.routes');
+const charityDistributionRoutes = require('./routes/charity/distribution.routes');
 
 const app = express();
 app.use(cors);
@@ -62,6 +63,7 @@ app.use("/api/auth/reset-password", resetPasswordRoutes);
 app.use('/api/charities', charityRoutes);
 app.use('/api/charity', charityRoutes);
 app.use('/api/system-donor', systemDonorRoutes);
+app.use('/api/charity/distributions', charityDistributionRoutes);
 
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`);
