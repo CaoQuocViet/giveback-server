@@ -45,7 +45,8 @@ CREATE TABLE Users (
 );
 
 CREATE TABLE Admins (
-  id varchar PRIMARY KEY REFERENCES Users(id), -- ID admin, link với Users
+  id varchar PRIMARY KEY,
+  user_id varchar PRIMARY KEY REFERENCES Users(id), -- ID admin, link với Users
   is_system_admin boolean NOT NULL DEFAULT false -- Cờ để phân biệt admin với user Role khác
 );
 
