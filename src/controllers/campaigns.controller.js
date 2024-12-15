@@ -3,6 +3,8 @@ const { Campaign, Charity, User } = require('../models');
 
 const getCampaignsList = async (req, res) => {
   try {
+    const baseUrl = `${req.protocol}://${req.get('host')}`;
+
     const {
       page = 1,
       limit = 9,
@@ -86,7 +88,7 @@ const getCampaignsList = async (req, res) => {
         id: campaign.id,
         title: campaign.title,
         description: campaign.description,
-        campaign_image: campaign.images,
+        campaign_image: campaign.images ? `${baseUrl}/storage/${campaign.images}` : null,
         target_amount: parseFloat(campaign.targetAmount) || 0,
         current_amount: parseFloat(campaign.currentAmount) || 0,
         start_date: formatDate(campaign.startDate),

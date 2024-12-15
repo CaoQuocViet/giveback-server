@@ -116,7 +116,7 @@ exports.getCampaignDetail = async (req, res) => {
 				representative: campaign.charity.user.full_name,
 			},
 			status: campaign.status,
-			images: campaign.images,
+			images: `${baseUrl}/storage/${campaign.images}`,
 			timeline: {
 				start_date: campaign.startDate,
 				end_date: campaign.endDate,

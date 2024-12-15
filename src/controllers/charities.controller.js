@@ -4,6 +4,8 @@ const { Charity, User, Campaign, Donation } = require('../models');
 class CharitiesController {
   async listCharities(req, res) {
     try {
+      const baseUrl = `${req.protocol}://${req.get('host')}`;
+      
       const {
         search,
         verification_status,
@@ -60,10 +62,23 @@ class CharitiesController {
         order: [['rating', 'DESC']]
       });
 
+      // Transform data để thêm baseUrl vào profile_image
+      const transformedCharities = charities.map(charity => {
+        const plainCharity = charity.get({ plain: true });
+        return {
+          ...plainCharity,
+          user: {
+            full_name: plainCharity.user.full_name,
+            profile_image: plainCharity.user.profile_image ? 
+              `${baseUrl}/storage/${plainCharity.user.profile_image}` : null
+          }
+        };
+      });
+
       return res.json({
         success: true,
         data: {
-          charities,
+          charities: transformedCharities,
           pagination: {
             total: count,
             page: parseInt(page),

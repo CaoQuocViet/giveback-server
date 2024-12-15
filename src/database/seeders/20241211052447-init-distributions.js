@@ -17,7 +17,7 @@ module.exports = {
         address: "Thôn Lùng Vài, Xã Thượng Sơn",
         beneficiary_count: 300,
         description: "Cung cấp lương thực cho các hộ dân bị ảnh hưởng bởi thiên tai.",
-        proof_images: "path/to/proof_image_1.jpg",
+        proof_images: "distributions/distribute1.png",
         representative_name: "charity_act1",
         relief_date: new Date('2024-02-05T00:00:00Z')
       },
@@ -33,7 +33,7 @@ module.exports = {
         address: "Thôn Tả Van, Xã Tả Van",
         beneficiary_count: 250,
         description: "Cung cấp nước sạch cho các hộ dân.",
-        proof_images: "path/to/proof_image_2.jpg",
+        proof_images: "distributions/distribute2.png",
         representative_name: "charity_act1",
         relief_date: new Date('2024-02-15T00:00:00Z')
       },
@@ -49,7 +49,7 @@ module.exports = {
         address: "Thôn Mường Nhé, Xã Mường Nhé",
         beneficiary_count: 200,
         description: "Cung cấp thuốc men cho các hộ dân.",
-        proof_images: "path/to/proof_image_3.jpg",
+        proof_images: "distributions/distribute3.png",
         representative_name: "charity_act1",
         relief_date: new Date('2024-02-25T00:00:00Z')
       },
@@ -65,7 +65,7 @@ module.exports = {
         address: "Thôn Đăk Nhoong, Xã Đăk Nhoong",
         beneficiary_count: 150,
         description: "Cung cấp quần áo cho các hộ dân.",
-        proof_images: "path/to/proof_image_4.jpg",
+        proof_images: "distributions/distribute4.png",
         representative_name: "charity_act1",
         relief_date: new Date('2024-03-05T00:00:00Z')
       },
@@ -81,7 +81,7 @@ module.exports = {
         address: "Thôn Nhơn Hải, Xã Nhơn Hải",
         beneficiary_count: 100,
         description: "Cung cấp đồ dùng học tập cho trẻ em.",
-        proof_images: "path/to/proof_image_5.jpg",
+        proof_images: "distributions/distribute5.png",
         representative_name: "charity_act1",
         relief_date: new Date('2024-03-15T00:00:00Z')
       },
@@ -97,7 +97,7 @@ module.exports = {
         address: "Thôn Nậm Ngà, Xã Nậm Ban",
         beneficiary_count: 300,
         description: "Cung cấp lương thực cho các hộ dân bị ảnh hưởng bởi động đất.",
-        proof_images: "path/to/proof_image_6.jpg",
+        proof_images: "distributions/distribute6.png",
         representative_name: "charity_act2",
         relief_date: new Date('2024-02-05T00:00:00Z')
       },
@@ -113,7 +113,7 @@ module.exports = {
         address: "Thôn Mường Tè, Xã Mường Tè",
         beneficiary_count: 250,
         description: "Cung cấp nước sạch cho các hộ dân.",
-        proof_images: "path/to/proof_image_7.jpg",
+        proof_images: "distributions/distribute7.png",
         representative_name: "charity_act2",
         relief_date: new Date('2024-02-15T00:00:00Z')
       },
@@ -129,7 +129,7 @@ module.exports = {
         address: "Thôn Nậm Ban, Xã Nậm Ban",
         beneficiary_count: 200,
         description: "Cung cấp thuốc men cho các hộ dân.",
-        proof_images: "path/to/proof_image_8.jpg",
+        proof_images: "distributions/distribute8.png",
         representative_name: "charity_act2",
         relief_date: new Date('2024-02-25T00:00:00Z')
       },
@@ -145,7 +145,7 @@ module.exports = {
         address: "Thôn Nậm Ban, Xã Nậm Ban",
         beneficiary_count: 150,
         description: "Cung cấp quần áo cho các hộ dân.",
-        proof_images: "path/to/proof_image_9.jpg",
+        proof_images: "distributions/distribute9.png",
         representative_name: "charity_act2",
         relief_date: new Date('2024-03-05T00:00:00Z')
       },
@@ -161,11 +161,11 @@ module.exports = {
         address: "Thôn Nậm Ban, Xã Nậm Ban",
         beneficiary_count: 100,
         description: "Cung cấp đồ dùng học tập cho trẻ em.",
-        proof_images: "path/to/proof_image_10.jpg",
+        proof_images: "distributions/distribute1.png", // Lặp lại hình ảnh theo thứ tự
         representative_name: "charity_act2",
         relief_date: new Date('2024-03-15T00:00:00Z')
       }
-    ], {});
+    ], {});    
   },
 
   async down (queryInterface, Sequelize) {
