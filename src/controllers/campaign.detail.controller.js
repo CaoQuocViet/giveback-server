@@ -135,7 +135,7 @@ exports.getCampaignDetail = async (req, res) => {
 			rating: parseFloat(campaign.rating),
 			description: campaign.description,
 			detailGoal: campaign.detailGoal,
-			shareUrl: `${process.env.FRONTEND_URL}/campaigns/${campaign.id}`,
+			shareUrl: `${process.env.FRONTEND_URL}/dashboard/campaigns/${campaign.id}`,
 			distributions: campaign.distributions.map((dist) => ({
 				title: dist.title,
 				description: dist.description,
