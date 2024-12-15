@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { getDonorProfile, updateDonorProfile } = require('../../controllers/user/donorProfileController');
-const { authMiddleware } = require('../../middlewares/auth');
+const { authMiddleware } = require('../../middleware/auth');
 const multer = require('multer');
 
 // Cấu hình multer để xử lý multipart/form-data

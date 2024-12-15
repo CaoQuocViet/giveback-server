@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
 const commentsController = require("../controllers/comments.controller");
-const { authMiddleware } = require("../middlewares/auth");
+const { authMiddleware } = require("../middleware/auth");
 
 // GET /campaigns/:id/comments - Fetch comments for a campaign
 router.get("/", commentsController.getComments);

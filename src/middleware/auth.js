@@ -1,9 +1,8 @@
 const jwt = require('jsonwebtoken');
 const { User } = require('../models');
 
-exports.authenticateToken = async (req, res, next) => {
+const authenticateToken = async (req, res, next) => {
   try {
-    // Lấy token từ header
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
 
@@ -31,7 +30,7 @@ exports.authenticateToken = async (req, res, next) => {
       id: user.id,
       email: user.email,
       role: user.role,
-      charityId: user.role === 'CHARITY' ? user.id : null // User.id chính là Charity.id
+      charityId: user.role === 'CHARITY' ? user.id : null
     };
 
     next();
@@ -54,4 +53,10 @@ exports.authenticateToken = async (req, res, next) => {
       message: 'Lỗi xác thực'
     });
   }
-}; 
+};
+
+// Export cả hai tên để đảm bảo tương thích với code cũ
+module.exports = {
+  authenticateToken,
+  authMiddleware: authenticateToken // alias cho authenticateToken
+};

@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const charityProfileController = require('../../controllers/user/charityProfileController');
-const { authMiddleware } = require('../../middlewares/auth');
+const { authMiddleware } = require('../../middleware/auth');
 const multer = require('multer');
 
 const upload = multer({
