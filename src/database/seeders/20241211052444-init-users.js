@@ -451,7 +451,7 @@ module.exports = {
         password: hashedPassword,
         role: 'CHARITY',
         otp_verified: true,
-        profile_image: 'profiles/avatar13.png', // Lặp lại từ avatar13
+        profile_image: 'profiles/avatar22.png', // Lặp lại từ avatar13
         province: 'Hồ Chí Minh',
         district: 'Quận 3',
         ward: 'Phường 6',
