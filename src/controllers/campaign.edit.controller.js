@@ -1,6 +1,7 @@
 const { Campaign } = require('../models');
 const { validateEditCampaign } = require('../validators/campaignValidator');
 const { handleError } = require('../utils/errorHandler');
+const { uploadFile, deleteOldFile } = require('../utils/fileUpload');
 
 // Get campaign details for editing
 const getCampaignForEdit = async (req, res) => {
@@ -73,8 +74,23 @@ const updateCampaign = async (req, res) => {
       });
     }
 
+    let imagePath = campaign.images;
+    // Xử lý upload file nếu có
+    if (req.file) {
+      imagePath = await uploadFile(req.file, 'campaigns', campaign.images);
+    }
+
+    const updatedData = {
+      status: req.body.status,
+      endDate: req.body.endDate,
+      targetAmount: Number(req.body.targetAmount),
+      description: req.body.description,
+      detailGoal: req.body.detailGoal,
+      images: imagePath
+    };
+
     // Validate input
-    const { error, value } = validateEditCampaign(req.body);
+    const { error, value } = validateEditCampaign(updatedData);
     if (error) {
       return res.status(400).json({
         success: false,
@@ -99,12 +115,7 @@ const updateCampaign = async (req, res) => {
 
     // Update campaign
     const updatedCampaign = await campaign.update({
-      status: value.status,
-      endDate: value.endDate,
-      targetAmount: value.targetAmount,
-      description: value.description,
-      detailGoal: value.detailGoal,
-      images: value.images,
+      ...value,
       editHistory
     });
 
