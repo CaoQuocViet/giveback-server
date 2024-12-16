@@ -64,11 +64,13 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     note: DataTypes.TEXT,
+    // Mã hóa đơn do hệ thống giveback tạo ra (để đối soát)
     invoiceCode: {
       type: DataTypes.STRING,
       unique: true,
       field: 'invoice_code'
     },
+    // Mã giao dịch do hệ thống thanh toán tạo ra (để đối soát)
     paymentTransactionId: {
       type: DataTypes.STRING,
       unique: true,
