@@ -12,6 +12,24 @@ module.exports = {
     const users = [
       // System Admin
       {
+        id: 'admin_000',
+        full_name: 'Cao Quốc Việt',
+        email: 'vietcq@giveback',
+        phone: '0900000000',
+        password: hashedPassword,
+        role: 'ADMIN',
+        otp_verified: true,
+        profile_image: 'profiles/avatar0.png',
+        province: 'Kiên Giang',
+        district: 'Vĩnh Lộc',
+        ward: 'Xã Vĩnh Lộc',
+        address: '123 Đường Lê Lợi',
+        created_at: '2024-01-01T00:00:00Z',
+        updated_at: '2024-01-01T00:00:00Z',
+        phone_verified_at: '2024-01-01T00:00:00Z'
+      },
+      // System Admin
+      {
         id: 'admin_001',
         full_name: 'Nguyễn Quản Trị',
         email: 'admin@giveback',
