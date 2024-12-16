@@ -150,16 +150,16 @@ const exportCampaignToPDF = async (report, res) => {
 	res.setHeader("Content-Type", "application/pdf");
 	doc.pipe(res);
 
-	doc.fontSize(18).text("Campaign Report", { align: "center" });
+	doc.fontSize(18).text("Báo cáo theo chiến dịch", { align: "center" });
 	doc.moveDown();
 
 	report.forEach((campaign) => {
-		doc.fontSize(12).text(`Title: ${campaign.title}`);
-		doc.text(`Total Received: ${campaign.totalReceived}`);
-		doc.text(`Total Distributed: ${campaign.totalDistributed}`);
-		doc.text(`Number of Donors: ${campaign.donorCount}`);
-		doc.text(`Number of Distributions: ${campaign.distributionCount}`);
-		doc.text(`Status: ${campaign.status}`);
+		doc.fontSize(12).text(`Tên chiến dịch: ${campaign.title}`);
+		doc.text(`Số tiền nhận: ${campaign.totalReceived}`);
+		doc.text(`Số tiền phân phối: ${campaign.totalDistributed}`);
+		doc.text(`Số người đóng góp: ${campaign.donorCount}`);
+		doc.text(`Số đợt hỗ trợ: ${campaign.distributionCount}`);
+		doc.text(`Trạng thái: ${campaign.status}`);
 		doc.moveDown();
 	});
 
@@ -175,15 +175,15 @@ const exportCharityToPDF = async (report, res) => {
 	res.setHeader("Content-Type", "application/pdf");
 	doc.pipe(res);
 
-	doc.fontSize(18).text("Charity Report", { align: "center" });
+	doc.fontSize(18).text("Báo cáo theo tổ chức", { align: "center" });
 	doc.moveDown();
 
 	report.forEach((charity) => {
-		doc.fontSize(12).text(`Name: ${charity.title}`);
-		doc.text(`Number of Campaigns: ${charity.campaignCount}`);
-		doc.text(`Total Fundraised: ${charity.totalFundraised}`);
-		doc.text(`Total Distributed: ${charity.totalDistributed}`);
-		doc.text(`Average Rating: ${charity.averageRating}`);
+		doc.fontSize(12).text(`Tên tổ chức: ${charity.title}`);
+		doc.text(`Số chiến dịch: ${charity.campaignCount}`);
+		doc.text(`Tổng tiền gây quỹ: ${charity.totalFundraised}`);
+		doc.text(`Tổng tiền đã phân phối: ${charity.totalDistributed}`);
+		doc.text(`Đánh giá trung bình: ${charity.averageRating}`);
 		doc.moveDown();
 	});
 
@@ -199,15 +199,15 @@ const exportDonationToPDF = async (report, res) => {
 	res.setHeader("Content-Type", "application/pdf");
 	doc.pipe(res);
 
-	doc.fontSize(18).text("Donation Report", { align: "center" });
+	doc.fontSize(18).text("Báo cáo theo người đóng góp", { align: "center" });
 	doc.moveDown();
 
 	report.forEach((donor) => {
-		doc.fontSize(12).text(`Donor ID: ${donor.id}`);
-		doc.text(`Name: ${donor.fullName}`);
-		doc.text(`Number of Campaigns: ${donor.campaignCount}`);
-		doc.text(`Total Donated: ${donor.totalDonated}`);
-		doc.text(`Last Donation Date: ${donor.lastDonationDate}`);
+		doc.fontSize(12).text(`ID: ${donor.id}`);
+		doc.text(`Tên: ${donor.fullName}`);
+		doc.text(`Số chiến dịch: ${donor.campaignCount}`);
+		doc.text(`Tổng số tiền: ${donor.totalDonated}`);
+		doc.text(`Lần đóng góp gần nhất: ${donor.lastDonationDate}`);
 		doc.moveDown();
 	});
 
@@ -223,18 +223,18 @@ const exportDistributionToPDF = async (report, res) => {
 	res.setHeader("Content-Type", "application/pdf");
 	doc.pipe(res);
 
-	doc.fontSize(18).text("Distribution Report", { align: "center" });
+	doc.fontSize(18).text("Báo cáo theo đợt hỗ trợ", { align: "center" });
 	doc.moveDown();
 
 	report.forEach((campaign) => {
-		doc.fontSize(14).text(`Campaign: ${campaign.campaignName}`);
+		doc.fontSize(14).text(`Chiến dịch: ${campaign.campaignName}`);
 		campaign.distributions.forEach((distribution) => {
-			doc.fontSize(12).text(`Distribution Name: ${distribution.title}`);
-			doc.text(`Representative: ${distribution.representativeName}`);
-			doc.text(`Budget Used: ${distribution.budget}`);
-			doc.text(`Beneficiary Count: ${distribution.beneficiary_count}`);
-			doc.text(`Relief Date: ${distribution.relief_date}`);
-			doc.text(`Location: ${distribution.location}`);
+			doc.fontSize(12).text(`Tên đợt hỗ trợ: ${distribution.title}`);
+			doc.text(`Người đại diện: ${distribution.representativeName}`);
+			doc.text(`Ngân sách sử dụng: ${distribution.budget}`);
+			doc.text(`Số người được hỗ trợ: ${distribution.beneficiary_count}`);
+			doc.text(`Ngày hỗ trợ: ${distribution.relief_date}`);
+			doc.text(`Địa điểm: ${distribution.location}`);
 			doc.moveDown();
 		});
 		doc.moveDown();
@@ -246,15 +246,15 @@ const exportDistributionToPDF = async (report, res) => {
 
 const exportCampaignToExcel = async (report, res) => {
 	const workbook = new ExcelJS.Workbook();
-	const worksheet = workbook.addWorksheet("Campaign Report");
+	const worksheet = workbook.addWorksheet("Báo cáo theo chiến dịch");
 
 	worksheet.columns = [
-		{ header: "Title", key: "title", width: 30 },
-		{ header: "Total Received", key: "totalReceived", width: 20 },
-		{ header: "Total Distributed", key: "totalDistributed", width: 20 },
-		{ header: "Number of Donors", key: "donorCount", width: 20 },
-		{ header: "Number of Distributions", key: "distributionCount", width: 25 },
-		{ header: "Status", key: "status", width: 15 },
+		{ header: "Tên chiến dịch", key: "title", width: 30 },
+		{ header: "Trạng thái", key: "status", width: 15 },
+		{ header: "Tổng tiền nhận", key: "totalReceived", width: 20 },
+		{ header: "Tổng tiền phân phối", key: "totalDistributed", width: 20 },
+		{ header: "Số người đóng góp", key: "donorCount", width: 20 },
+		{ header: "Số đợt hỗ trợ", key: "distributionCount", width: 20 },
 	];
 
 	report.forEach((campaign) => {
@@ -276,14 +276,14 @@ const exportCampaignToExcel = async (report, res) => {
 
 const exportCharityToExcel = async (report, res) => {
 	const workbook = new ExcelJS.Workbook();
-	const worksheet = workbook.addWorksheet("Charity Report");
+	const worksheet = workbook.addWorksheet("Báo cáo theo tổ chức");
 
 	worksheet.columns = [
-		{ header: "Name", key: "title", width: 30 },
-		{ header: "Number of Campaigns", key: "campaignCount", width: 20 },
-		{ header: "Total Fundraised", key: "totalFundraised", width: 20 },
-		{ header: "Total Distributed", key: "totalDistributed", width: 20 },
-		{ header: "Average Rating", key: "averageRating", width: 15 },
+		{ header: "Tên tổ chức", key: "title", width: 30 },
+		{ header: "Số chiến dịch", key: "campaignCount", width: 15 },
+		{ header: "Tổng tiền gây quỹ", key: "totalFundraised", width: 20 },
+		{ header: "Tổng tiền đã phân phối", key: "totalDistributed", width: 20 },
+		{ header: "Đánh giá trung bình", key: "averageRating", width: 20 },
 	];
 
 	report.forEach((charity) => {
@@ -305,14 +305,13 @@ const exportCharityToExcel = async (report, res) => {
 
 const exportDonationToExcel = async (report, res) => {
 	const workbook = new ExcelJS.Workbook();
-	const worksheet = workbook.addWorksheet("Donation Report");
+	const worksheet = workbook.addWorksheet("Báo cáo theo người đóng góp");
 
 	worksheet.columns = [
-		{ header: "Donor ID", key: "id", width: 15 },
-		{ header: "Name", key: "fullName", width: 25 },
-		{ header: "Number of Campaigns", key: "campaignCount", width: 20 },
-		{ header: "Total Donated", key: "totalDonated", width: 20 },
-		{ header: "Last Donation Date", key: "lastDonationDate", width: 25 },
+		{ header: "Người đóng góp", key: "full_name", width: 30 },
+		{ header: "Số chiến dịch đã đóng góp", key: "campaignCount", width: 25 },
+		{ header: "Tổng số tiền", key: "totalDonated", width: 20 },
+		{ header: "Lần đóng góp gần nhất", key: "lastDonationDate", width: 25 },
 	];
 
 	report.forEach((donor) => {
@@ -334,16 +333,16 @@ const exportDonationToExcel = async (report, res) => {
 
 const exportDistributionToExcel = async (report, res) => {
 	const workbook = new ExcelJS.Workbook();
-	const worksheet = workbook.addWorksheet("Distribution Report");
+	const worksheet = workbook.addWorksheet("Báo cáo theo đợt hỗ trợ");
 
 	worksheet.columns = [
-		{ header: "Campaign Name", key: "campaignName", width: 30 },
-		{ header: "Distribution Name", key: "title", width: 30 },
-		{ header: "Representative Name", key: "representativeName", width: 25 },
-		{ header: "Budget Used", key: "budget", width: 20 },
-		{ header: "Beneficiary Count", key: "beneficiaryCount", width: 20 },
-		{ header: "Relief Date", key: "reliefDate", width: 20 },
-		{ header: "Location", key: "location", width: 30 },
+		{ header: "Tên chiến dịch", key: "campaignName", width: 30 },
+		{ header: "Tên đợt hỗ trợ", key: "title", width: 30 },
+		{ header: "Người đại diện", key: "representativeName", width: 25 },
+		{ header: "Ngân sách sử dụng", key: "budget", width: 20 },
+		{ header: "Số người được hỗ trợ", key: "beneficiaryCount", width: 20 },
+		{ header: "Ngày hỗ trợ", key: "reliefDate", width: 20 },
+		{ header: "Địa điểm", key: "location", width: 30 },
 	];
 
 	report.forEach((campaign) => {
@@ -372,3 +371,109 @@ const exportDistributionToExcel = async (report, res) => {
 	await workbook.xlsx.write(res);
 	res.end();
 };
+
+const exportReport = async (type, format) => {
+	const reportTemplates = {
+		campaign: {
+			fields: [
+				{ header: 'Tên chiến dịch', key: 'title' },
+				{ header: 'Tổ chức', key: 'charity_name' },
+				{ header: 'Trạng thái', key: 'status', 
+					format: (value) => ({
+						'STARTING': 'Chuẩn bị',
+						'ONGOING': 'Đang diễn ra',
+						'COMPLETED': 'Hoàn thành',
+						'CLOSED': 'Đã đóng'
+					})[value] || value
+				},
+				{ header: 'Tổng tiền nhận', key: 'totalReceived',
+					format: (value) => new Intl.NumberFormat('vi-VN', {
+						style: 'currency',
+						currency: 'VND'
+					}).format(value)
+				},
+				{ header: 'Số người đóng góp', key: 'donorCount' },
+				{ header: 'Số đợt hỗ trợ', key: 'distributionCount' }
+			]
+		},
+		charity: {
+			fields: [
+				{ header: 'Tên tổ chức', key: 'title' },
+				{ header: 'Số chiến dịch', key: 'campaignCount' },
+				{ header: 'Tổng tiền gây quỹ', key: 'totalFundraised',
+					format: (value) => new Intl.NumberFormat('vi-VN', {
+						style: 'currency',
+						currency: 'VND'
+					}).format(value)
+				},
+				{ header: 'Tổng tiền đã phân phối', key: 'totalDistributed',
+					format: (value) => new Intl.NumberFormat('vi-VN', {
+						style: 'currency',
+						currency: 'VND'
+					}).format(value)
+				},
+				{ header: 'Đánh giá trung bình', key: 'averageRating',
+					format: (value) => Number(value).toFixed(1) + ' ⭐'
+				}
+			]
+		},
+		donation: {
+			fields: [
+				{ header: 'Người đóng góp', key: 'fullName' },
+				{ header: 'Số chiến dịch đã đóng góp', key: 'campaignCount' },
+				{ header: 'Tổng số tiền', key: 'totalDonated',
+					format: (value) => new Intl.NumberFormat('vi-VN', {
+						style: 'currency',
+						currency: 'VND'
+					}).format(value)
+				},
+				{ header: 'Lần đóng góp gần nhất', key: 'lastDonationDate',
+					format: (value) => new Date(value).toLocaleDateString('vi-VN')
+				}
+			]
+		},
+		distribution: {
+			fields: [
+				{ header: 'Tên chiến dịch', key: 'campaignName' },
+				{ header: 'Tên đợt hỗ trợ', key: 'title' },
+				{ header: 'Người đại diện', key: 'representativeName' },
+				{ header: 'Ngân sách', key: 'budget',
+					format: (value) => new Intl.NumberFormat('vi-VN', {
+						style: 'currency',
+						currency: 'VND'
+					}).format(value)
+				},
+				{ header: 'Số người được hỗ trợ', key: 'beneficiary_count' },
+				{ header: 'Ngày hỗ trợ', key: 'relief_date',
+					format: (value) => new Date(value).toLocaleDateString('vi-VN')
+				},
+				{ header: 'Địa điểm', key: 'location' }
+			]
+		}
+	}
+
+	// PDF styling
+	const pdfStyles = {
+		header: {
+			fontSize: 18,
+			bold: true,
+			alignment: 'center',
+			margin: [0, 0, 0, 20]
+		},
+		table: {
+			margin: [0, 5, 0, 15]
+		},
+		tableHeader: {
+			bold: true,
+			fontSize: 13,
+			color: 'black',
+			fillColor: '#f3f4f6'
+		},
+		tableCell: {
+			fontSize: 12,
+			padding: 8
+		}
+	}
+
+	// ... rest of the export logic
+}
