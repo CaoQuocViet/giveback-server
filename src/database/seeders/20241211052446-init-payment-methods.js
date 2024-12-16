@@ -25,6 +25,20 @@ module.exports = {
         transaction_code: 'MOMO_001',
         created_at: new Date(),
         updated_at: new Date()
+      },
+      {
+        id: 'payment_method_4',
+        name: 'BANK TRANSFER',
+        transaction_code: 'BANK_TRANSFER_001',
+        created_at: new Date(),
+        updated_at: new Date()
+      },
+      {
+        id: 'payment_method_5',
+        name: 'QUA TCTT',
+        transaction_code: 'DONATE_THOUGHT_CHARITY_001',
+        created_at: new Date(),
+        updated_at: new Date()
       }
     ], {});
   },

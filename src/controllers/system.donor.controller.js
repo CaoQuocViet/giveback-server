@@ -22,7 +22,7 @@ exports.createDonation = async (req, res) => {
       donorId: 'system_donor',
       amount,
       note,
-      paymentMethodId: 'payment_method_2', // Sử dụng payment_method_id từ seeder
+      paymentMethodId: 'payment_method_5', // Sử dụng payment_method_id từ seeder
       isIntermediate: true,
       status: 'SUCCESS',
       isAnonymous: false
