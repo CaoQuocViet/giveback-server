@@ -1,5 +1,5 @@
-dropdb giveback_db
-createdb giveback_db
+dropdb -U vietcq giveback_db
+createdb -U vietcq giveback_db
 npx sequelize-cli db:migrate
 npx sequelize-cli db:seed:all
 
