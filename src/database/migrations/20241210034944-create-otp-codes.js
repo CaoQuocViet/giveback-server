@@ -11,11 +11,7 @@ module.exports = {
       },
       phone: {
         type: Sequelize.STRING,
-        allowNull: false,
-        references: {
-          model: 'Users',
-          key: 'phone'
-        }
+        allowNull: false
       },
       code: {
         type: Sequelize.STRING,
