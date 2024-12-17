@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./giveback
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:5000
+    volumes:
+      - ./giveback:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - giveback-network
+
+  backend:
+    build:
+      context: ./giveback-server
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=giveback_db
+      - DB_USER=admin
+      - DB_PASSWORD=your_secure_password
+    volumes:
+      - ./giveback-server:/app
+      - /app/node_modules
+    depends_on:
+      - db
+    networks:
+      - giveback-network
+
+  db:
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=giveback_db
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=your_secure_password
+    command: 
+      - "postgres"
+      - "-c"
+      - "max_connections=1000"
+      - "-c"
+      - "shared_buffers=128MB"
+    networks:
+      - giveback-network
+
+networks:
+  giveback-network:
+    driver: bridge 
