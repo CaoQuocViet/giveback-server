@@ -2,13 +2,25 @@ const { User } = require("../../models");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+const formatPhoneNumber = (phone) => {
+	if (phone.startsWith('84')) {
+		return '0' + phone.slice(2);
+	}
+	return phone;
+};
+
 const login = async (req, res) => {
 	try {
 		const { identifier, password, type } = req.body;
 		const baseUrl = `${req.protocol}://${req.get('host')}`;
 
-		const whereClause =
-			type === "email" ? { email: identifier } : { phone: identifier };
+		let whereClause;
+		if (type === "email") {
+			whereClause = { email: identifier };
+		} else {
+			const formattedPhone = formatPhoneNumber(identifier);
+			whereClause = { phone: formattedPhone };
+		}
 
 		const user = await User.findOne({
 			where: whereClause,
