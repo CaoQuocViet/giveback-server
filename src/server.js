@@ -68,6 +68,7 @@ app.use('/api/system-donor', systemDonorRoutes);
 app.use('/api/charity/distributions', charityDistributionRoutes);
 app.use('/api/charity/campaigns', campaignCreateRoutes);
 app.use('/api', donationRoutes);
+app.use('/api/user', userRoutes);
 
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`);
