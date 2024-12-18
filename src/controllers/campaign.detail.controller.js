@@ -75,7 +75,7 @@ exports.getCampaignDetail = async (req, res) => {
 						"note",
 						"invoice_code",
 						"payment_transaction_id",
-						"is_anonymous",
+						"isAnonymous",
 						"status",
 						"created_at"
 					],
@@ -161,10 +161,10 @@ exports.getCampaignDetail = async (req, res) => {
 			})),
 			donations: campaign.donations.map(donation => ({
 				id: donation.id,
-				donor: donation.is_anonymous ? {
+				donor: donation.isAnonymous ? {
 					name: "Nhà hảo tâm ẩn danh",
 					role: "DONOR",
-					avatar: `${baseUrl}/storage/profile/system_donor_avatar.png` || null
+					avatar: null
 				} : {
 					name: donation.donor.fullName,
 					role: donation.donor.role,
@@ -176,7 +176,8 @@ exports.getCampaignDetail = async (req, res) => {
 				invoice_code: donation.invoice_code || null,
 				transaction_id: donation.payment_transaction_id || null,
 				status: donation.status,
-				created_at: donation.created_at
+				created_at: donation.created_at,
+				isAnonymous: donation.isAnonymous
 			}))
 		};
 
