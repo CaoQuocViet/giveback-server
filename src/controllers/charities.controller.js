@@ -116,15 +116,13 @@ class CharitiesController {
         });
       }
 
-      if (charity.verification_status === 'VERIFIED') {
-        return res.status(400).json({
-          success: false,
-          message: 'Tổ chức đã được xác thực'
-        });
-      }
+      console.log('Current status:', charity.verificationStatus);
+      console.log('Updating to VERIFIED');
 
-      await charity.update({ verification_status: 'VERIFIED' });
+      await charity.update({ verificationStatus: 'VERIFIED' });
       await charity.save();
+
+      console.log('Updated status:', charity.verificationStatus);
 
       return res.json({
         success: true,
@@ -151,7 +149,7 @@ class CharitiesController {
           message: 'Không có quyền thực hiện thao tác này'
         });
       }
-      
+
       const charity = await Charity.findByPk(id);
       if (!charity) {
         return res.status(404).json({
@@ -160,15 +158,23 @@ class CharitiesController {
         });
       }
 
-      if (charity.verification_status === 'REJECTED') {
+      // Kiểm tra trạng thái hiện tại
+      if (charity.verificationStatus === 'REJECTED') {
         return res.status(400).json({
           success: false,
           message: 'Tổ chức đã bị từ chối xác thực'
         });
       }
 
-      await charity.update({ verification_status: 'REJECTED' });
+      // Thêm log để debug
+      console.log('Current status:', charity.verificationStatus);
+      console.log('Updating to REJECTED');
+
+      await charity.update({ verificationStatus: 'REJECTED' });
       await charity.save();
+
+      // Log sau khi cập nhật
+      console.log('Updated status:', charity.verificationStatus);
 
       return res.json({
         success: true,
