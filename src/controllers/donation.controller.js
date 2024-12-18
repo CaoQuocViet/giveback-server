@@ -39,7 +39,7 @@ class DonationController {
       const description = message || "Không có lời nhắn"; // Sử dụng message làm description
       const zaloPayOrder = await createZaloPayOrder(amount, description, message, campaignId);
 
-      // Tạo donation record với trạng thái PENDING và lưu app_trans_id
+      // Tạo donation record với trạng thái SUCCESS và lưu app_trans_id
       const donation = await Donation.create({
         id: uuidv4(),
         campaignId,
@@ -49,8 +49,9 @@ class DonationController {
         note: message,
         paymentMethodId,
         isAnonymous,
-        status: 'PENDING',
-        payment_transaction_id: zaloPayOrder.app_trans_id // Lưu app_trans_id
+        status: 'SUCCESS',
+        invoiceCode: `INV${moment().format('YYMMDD')}${String(Math.floor(Math.random() * 100000)).padStart(5, '0')}`,
+        paymentTransactionId: zaloPayOrder.app_trans_id // Lưu app_trans_id
       });
 
       // Trả về URL thanh toán để FE redirect
@@ -88,7 +89,7 @@ class DonationController {
 
       // Tìm donation record bằng app_trans_id
       const donation = await Donation.findOne({
-        where: { payment_transaction_id: data.app_trans_id }
+        where: { paymentTransactionId: data.app_trans_id }
       });
 
       if (!donation) {
@@ -101,21 +102,21 @@ class DonationController {
       // Cập nhật trạng thái donation
       if (data.status === 1) { // Thành công
         // Tạo invoice code theo format: INVyyMMddxxxxx
-        const invoice_code = `INV${moment().format('YYMMDD')}${String(Math.floor(Math.random() * 100000)).padStart(5, '0')}`;
+        const invoiceCode = `INV${moment().format('YYMMDD')}${String(Math.floor(Math.random() * 100000)).padStart(5, '0')}`;
         
-        // Cập nhật donation với invoice_code và payment_transaction_id từ ZaloPay
+        // Cập nhật donation với invoiceCode và paymentTransactionId từ ZaloPay
         await donation.update({ 
           status: 'SUCCESS',
-          invoice_code,
-          payment_transaction_id: data.zptransid // Cập nhật mã giao dịch từ ZaloPay
+          invoiceCode,
+          paymentTransactionId: data.zptransid // Cập nhật mã giao dịch từ ZaloPay
         });
         
         // Log để debug
         console.log('Updated donation:', {
           id: donation.id,
           status: 'SUCCESS',
-          invoice_code,
-          payment_transaction_id: data.zptransid
+          invoiceCode,
+          paymentTransactionId: data.zptransid
         });
         
         // Cập nhật số tiền campaign
