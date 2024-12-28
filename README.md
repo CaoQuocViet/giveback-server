@@ -4,9 +4,13 @@
 
 GIVEBACK Backend là phần cốt lõi của nền tảng hỗ trợ đóng góp từ thiện cho vùng thiên tai tại Việt Nam. Hệ thống này quản lý người dùng, chiến dịch từ thiện, xử lý đóng góp, và tạo các báo cáo minh bạch về việc sử dụng nguồn quỹ. Với thiết kế đảm bảo tính mở rộng và bảo mật, Backend của GIVEBACK đảm bảo các giao dịch và dữ liệu được quản lý một cách hiệu quả và đáng tin cậy.
 
+![Demo](Resources/img/demo/Giveback_homepage.png)
+
 Chúng tôi mong muốn nhận được sự đóng góp từ cộng đồng để có thể ứng dụng thực tế và hỗ trợ hiệu quả cho người Việt bị ảnh hưởng bởi thiên tai.
 
 ## Các Chức Năng Chính
+
+![Demo](Resources/img/demo/giveback_usecase.png)
 
 ### 1. Đăng Ký và Xác Thực Tài Khoản
 - **Đăng ký tài khoản:**
@@ -43,7 +47,7 @@ Chúng tôi mong muốn nhận được sự đóng góp từ cộng đồng đ�
 
 ## Công Nghệ Sử Dụng
 - **Backend:**
-  - Node.js, Express.js, TypeScript, PostgreSQL, TypeORM.
+  - Node.js, Express.js, TypeScript, PostgreSQL, Sequelize.
 
 - **Thanh Toán:**
   - ZaloPay API.
@@ -90,7 +94,7 @@ npm run dev
 yarn dev
 ```
 
-- Ứng dụng sẽ chạy trên http://localhost:4000.
+- Ứng dụng sẽ chạy trên http://localhost:5000.
 
 ## Đóng Góp
 - Chúng tôi rất hoan nghênh mọi đóng góp từ cộng đồng. Để đóng góp:
