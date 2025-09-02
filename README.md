@@ -1,114 +1,117 @@
 # GIVEBACK Backend
 
-## Giới Thiệu
+## Introduction
 
-GIVEBACK Backend là phần cốt lõi của nền tảng hỗ trợ đóng góp từ thiện cho vùng thiên tai tại Việt Nam. Hệ thống này quản lý người dùng, chiến dịch từ thiện, xử lý đóng góp, và tạo các báo cáo minh bạch về việc sử dụng nguồn quỹ. Với thiết kế đảm bảo tính mở rộng và bảo mật, Backend của GIVEBACK đảm bảo các giao dịch và dữ liệu được quản lý một cách hiệu quả và đáng tin cậy.
+**Project Notice:** This project was developed as a coursework assignment and completed within 15 days. While functional, it may contain limitations and areas for improvement due to the time constraints.
+
+GIVEBACK Backend is the core component of the charitable donation platform supporting disaster-affected areas in Vietnam. This system manages users, charity campaigns, processes donations, and generates transparent reports on fund utilization. With a design that ensures scalability and security, GIVEBACK Backend ensures that transactions and data are managed efficiently and reliably.
 
 ![Demo](Resources/img/demo/Giveback_homepage.png)
 
-Chúng tôi mong muốn nhận được sự đóng góp từ cộng đồng để có thể ứng dụng thực tế và hỗ trợ hiệu quả cho người Việt bị ảnh hưởng bởi thiên tai.
+We welcome contributions from the community to make this platform practical and effectively support Vietnamese people affected by natural disasters.
 
-## Các Chức Năng Chính
+## Main Features
 
 ![Demo](Resources/img/demo/giveback_usecase.png)
 
-### 1. Đăng Ký và Xác Thực Tài Khoản
-- **Đăng ký tài khoản:**
-  - Người dùng có thể đăng ký với vai trò DONOR, CHARITY, hoặc BENEFICIARY.
-  - Xác minh tài khoản qua OTP gửi đến số điện thoại.
+### 1. Account Registration and Authentication
+- **Account Registration:**
+  - Users can register with roles: DONOR, CHARITY, or BENEFICIARY.
+  - Account verification via OTP sent to phone number.
 
-- **Xác thực tài khoản CHARITY:**
-  - Tổ chức từ thiện cần cung cấp giấy phép hoạt động.
-  - Admin kiểm tra và xác thực giấy phép trước khi thay đổi trạng thái thành VERIFIED.
+- **CHARITY Account Verification:**
+  - Charitable organizations need to provide operating licenses.
+  - Admin reviews and verifies licenses before changing status to VERIFIED.
 
-### 2. Quản Lý Chiến Dịch Từ Thiện
-- **Tạo chiến dịch mới (CHARITY):**
-  - Được Admin xác minh trước khi tạo.
-  - Quản lý thông tin chiến dịch như mô tả, mục tiêu, ngân sách, địa điểm và thời gian.
+### 2. Charity Campaign Management
+- **Create New Campaign (CHARITY):**
+  - Must be verified by Admin before creation.
+  - Manage campaign information such as description, objectives, budget, location, and time.
 
-- **Cập nhật và Xóa chiến dịch:**
-  - Tổ chức từ thiện có thể chỉnh sửa hoặc xóa chiến dịch dưới quyền quản lý.
-  - Hệ thống tự động xử lý các dữ liệu liên quan khi chiến dịch bị xóa.
+- **Update and Delete Campaigns:**
+  - Charitable organizations can edit or delete campaigns under their management.
+  - System automatically handles related data when campaigns are deleted.
 
-### 3. Đóng Góp Từ Thiện
-- **Xử lý đóng góp:**
-  - Tích hợp các phương thức thanh toán như chuyển khoản ngân hàng, Ví điện tử (Momo, VNPAY), và thẻ tín dụng.
-  - Cập nhật trạng thái giao dịch dựa trên phản hồi từ cổng thanh toán.
+### 3. Charitable Donations
+- **Process Donations:**
+  - Integrate payment methods such as bank transfers, E-wallets (Momo, VNPAY), and credit cards.
+  - Update transaction status based on payment gateway responses.
 
-### 4. Theo Dõi và Báo Cáo
-- **Quản lý báo cáo:**
-  - Cung cấp thông tin tổng quan về số tiền và vật phẩm đã quyên góp, phân phối và số dư còn lại.
-  - Hỗ trợ xuất báo cáo chi tiết theo người, ngày, tháng, tổ chức từ thiện, và thiên tai.
+### 4. Tracking and Reporting
+- **Report Management:**
+  - Provide overview information about donated money and goods, distribution, and remaining balance.
+  - Support detailed report export by person, day, month, charitable organization, and disaster.
 
-### 5. Phản Hồi và Đánh Giá
-- **Quản lý phản hồi:**
-  - Cho phép người dùng gửi phản hồi và đánh giá về tình hình quyên góp và nhận hỗ trợ.
-  - Hiển thị phản hồi để tạo lòng tin từ cộng đồng.
+### 5. Feedback and Reviews
+- **Feedback Management:**
+  - Allow users to send feedback and reviews about donation and support reception situations.
+  - Display feedback to build community trust.
 
-## Công Nghệ Sử Dụng
+## Technologies Used
 - **Backend:**
   - Node.js, Express.js, TypeScript, PostgreSQL, Sequelize.
 
-- **Thanh Toán:**
+- **Payment:**
   - ZaloPay API.
 
-- **Công cụ khác:**
+- **Other Tools:**
   - Nodemon, Docker, Docker Compose, Git, ESLint, Prettier.
 
-## Cài Đặt và Chạy Ứng Dụng
+## Installation and Running the Application
 
-### Yêu Cầu
+### Requirements
 - **Node.js** v14+
-- **npm** hoặc **yarn**
+- **npm** or **yarn**
 - **PostgreSQL**
 - **Docker** & **Docker Compose**
 
-### Bước 1: Clone Repository
+### Step 1: Clone Repository
 ```sh
 git clone https://github.com/CaoQuocViet/giveback-server.git
 ```
 
-### Bước 2: Cài Đặt Dependencies
+### Step 2: Install Dependencies
 ```sh
 cd giveback-server
 npm install
-# hoặc
+# or
 yarn install
 ```
 
-### Bước 3: Cấu Hình Môi Trường
-Sao chép file .env.example thành .env và cập nhật các biến môi trường cần thiết.
-### Bước 4: Khởi Tạo và Phân Mảnh Cơ Sở Dữ Liệu
+### Step 3: Environment Configuration
+Copy the .env.example file to .env and update the necessary environment variables.
+
+### Step 4: Initialize and Migrate Database
 ```sh
 npm run migrate
 npm run seed
-# hoặc
+# or
 yarn migrate
 yarn seed
 ```
 
-### Bước 5: Chạy Ứng Dụng
+### Step 5: Run Application
 ```sh
 npm run dev
-# hoặc
+# or
 yarn dev
 ```
 
-- Ứng dụng sẽ chạy trên http://localhost:5000.
+- The application will run on http://localhost:5000.
 
-## Đóng Góp
-- Chúng tôi rất hoan nghênh mọi đóng góp từ cộng đồng. Để đóng góp:
+## Contributing
+We welcome all contributions from the community. To contribute:
 
-## Fork repository.
-- Tạo một nhánh mới cho tính năng hoặc sửa lỗi bạn muốn thêm.
-- Gửi Pull Request với mô tả chi tiết về các thay đổi của bạn.
+1. **Fork the repository.**
+2. **Create a new branch** for the feature or bug fix you want to add.
+3. **Submit a Pull Request** with detailed description of your changes.
 
 ## License
-- Dự án này được cấp phép theo giấy phép MIT. Xem file LICENSE để biết thêm chi tiết.
+This project is licensed under the MIT License. See the LICENSE file for more details.
 
-## Liên Hệ
-- Đối với bất kỳ câu hỏi hoặc hỗ trợ nào, vui lòng liên hệ qua email: vietcao10@gmail.com.
+## Contact
+For any questions or support, please contact us via email: vietcao10@gmail.com.
 
-## Liên Kết Repository
-- Frontend: https://github.com/CaoQuocViet/giveback
-- Backend: https://github.com/CaoQuocViet/giveback-server
+## Repository Links
+- **Frontend:** https://github.com/CaoQuocViet/giveback
+- **Backend:** https://github.com/CaoQuocViet/giveback-server
